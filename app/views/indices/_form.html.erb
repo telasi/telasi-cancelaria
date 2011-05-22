@@ -1,0 +1,33 @@
+<%= form_for(@index) do |f| %>
+  <% if @index.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@index.errors.count, "error") %> prohibited this index from being saved:</h2>
+
+      <ul>
+      <% @index.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :prefix %><br />
+    <%= f.text_field :prefix %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :last_number %><br />
+    <%= f.text_field :last_number %>
+  </div>
+  <div class="field">
+    < %= f.label :relation %><br />
+    < %= f.text_field :relation %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'შენავა' %>
+  </div>
+<% end %>

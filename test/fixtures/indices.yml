@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  prefix: MyString
+  description: MyString
+  last_number: 
+  relation: 
+
+two:
+  prefix: MyString
+  description: MyString
+  last_number: 
+  relation: 

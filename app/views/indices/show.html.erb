@@ -1,0 +1,23 @@
+<p>
+  <b>Prefix:</b>
+  <%= @index.prefix %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @index.description %>
+</p>
+
+<p>
+  <b>Last number:</b>
+  <%= @index.last_number %>
+</p>
+
+<p>
+  <b>Relation:</b>
+  <%= @index.relation %>
+</p>
+
+
+<%= link_to 'Edit', edit_index_path(@index) %> |
+<%= link_to 'Back', indices_path %>

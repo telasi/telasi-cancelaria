@@ -1,0 +1,27 @@
+<h1>ინდექსების მართვა</h1>
+
+<div class="actions">
+<%= link_to 'ინდექსის დამატება', new_index_path %>
+</div>
+
+<table cellspacing="0">
+<tr>
+  <th width="25">&nbsp;</th>
+  <th width="400">აღწერილობა</th>
+  <th width="120">ბოლო ნომერი</th>
+  <th width="150">&nbsp;</th>
+</tr>
+<% if @indices.any? -%>
+<% @indices.each do |index| -%>
+  <tr>
+    <td><%= index.prefix %></td>
+    <td><%= link_to index.description, index %></td>
+    <td align="right"><%= index.last_number %></td>
+    <td><%= link_to 'შეცვლა', edit_index_path(index) %> |
+    <%= link_to 'წაშლა', index, :confirm => 'ნამდვილად გინდათ ამ ინდექსის წაშლა?', :method => :delete %></td>
+  </tr>
+<% end -%>
+<% else -%>
+<tr><td colspan="4" class="empty">სია ცარიელია</td></tr>
+<% end -%>
+</table>
