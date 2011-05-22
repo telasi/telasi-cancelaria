@@ -6,7 +6,7 @@
 
 <table cellspacing="0">
 <tr>
-  <th width="25">&nbsp;</th>
+  <th width="30">&nbsp;</th>
   <th width="400">აღწერილობა</th>
   <th width="120">ბოლო ნომერი</th>
   <th width="150">&nbsp;</th>
@@ -14,7 +14,7 @@
 <% if @indices.any? -%>
 <% @indices.each do |index| -%>
   <tr>
-    <td><%= index.prefix %></td>
+    <td class="shade"><%= index.prefix %></td>
     <td><%= link_to index.description, index %></td>
     <td align="right"><%= index.last_number %></td>
     <td><%= link_to 'შეცვლა', edit_index_path(index) %> |

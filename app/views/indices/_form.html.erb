@@ -12,22 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :prefix %><br />
+    <%= f.label :prefix, 'პრეფიქსი' %><br />
     <%= f.text_field :prefix %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.label :description, 'აღწერილობა' %><br />
+    <%= f.text_field :description, :style => 'width: 600px' %>
   </div>
   <div class="field">
-    <%= f.label :last_number %><br />
+    <%= f.label :last_number, 'ბოლო ნომერი' %><br />
     <%= f.text_field :last_number %>
   </div>
   <div class="field">
-    < %= f.label :relation %><br />
-    < %= f.text_field :relation %>
+    <%= f.label :relation, 'დამოკიდებულება' %><br />
+    <%= f.collection_select(:relation_id, Index.all(:order => 'prefix'), :id, :to_s, :include_blank => true) %>
   </div>
   <div class="actions">
-    <%= f.submit 'შენავა' %>
+    <%= f.submit 'შენავა' %> ან
+    <% if @index.id %><%= link_to 'გაუქმება', @index %><% else -%><%= link_to 'გაუქმება', indices_url %><% end -%>
   </div>
 <% end %>

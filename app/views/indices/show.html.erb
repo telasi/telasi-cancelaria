@@ -1,23 +1,19 @@
-<p>
-  <b>Prefix:</b>
-  <%= @index.prefix %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @index.description %>
-</p>
-
-<p>
-  <b>Last number:</b>
-  <%= @index.last_number %>
-</p>
-
-<p>
-  <b>Relation:</b>
-  <%= @index.relation %>
-</p>
-
-
-<%= link_to 'Edit', edit_index_path(@index) %> |
-<%= link_to 'Back', indices_path %>
+<h1><%= @index.description %></h1>
+<div class="actions">
+<%= link_to 'შეცვლა', edit_index_path(@index) %> |
+<%= link_to 'სიაში დაბრუნება', indices_path %>
+</div>
+<table width="700">
+<tr>
+  <td width="300" class="shade">ნომრის წარმოების პრეფიქსი</td>
+  <td><%= @index.prefix %></td>
+</tr>
+<tr>
+  <td class="shade">ბოლოს გენერირებული ნომერი</td>
+  <td><%= @index.last_number %></td>
+</tr>
+<tr>
+  <td class="shade">დამოკიდებულია ინდექსზე</td>
+  <td><% if @index.relation %><%= @index.relation.prefix %><% else %>(დამოუკიდებელი)<% end %></td>
+</tr>
+</table>
