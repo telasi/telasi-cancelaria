@@ -1,0 +1,29 @@
+<h1><%= @department.name %> (<%= @department.name_ru %>)</h1>
+
+<div class="actions">
+<%= link_to 'შეცვლა', edit_department_path(@department) %> |
+<%= link_to 'სიაში დაბრუნება', departments_path %>
+</div>
+
+<table>
+<tr>
+<td class="shade">დასახელება</td>
+<td><%= @department.name %> (<%= @department.name_ru %>)</td>
+</tr>
+<tr>
+<td class="shade">უფროსი</td>
+<td><%= @department.boss %> (<%= @department.boss_ru %>)</td>
+</tr>
+<tr>
+<td class="shade">მიმართვა</td>
+<td><%= @department.salutation %> (<%= @department.salutation_ru %>)</td>
+</tr>
+<tr>
+<td class="shade">რიგითი ნომერი</td>
+<td><%= @department.order_by %></td>
+</tr>
+<tr>
+<td class="shade">დაიბჭდოს სამსახ. წერილში</td>
+<td><%= @department.print ? 'კი' : 'არა' %></td>
+</tr>
+</table>

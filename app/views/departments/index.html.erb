@@ -1,0 +1,28 @@
+<h1>დირექციების მართვა</h1>
+
+<div class="actions">
+<%= link_to 'დირექციის დამატება', new_department_path %>
+</div>
+
+<table>
+  <tr>
+    <th>&nbsp;</th>
+    <th>სახელი, გვარი</th>
+    <th>უფროსი</th>
+    <th>მიმართვა</th>
+    <th>&nbsp;</th>
+  </tr>
+
+<% @departments.each do |department| %>
+  <tr>
+    <td class="shade"><%= department.order_by %></td>
+    <td><%= link_to department.name, department %><br/><%= department.name_ru %></td>
+    <td><%= department.boss %><br/><%= department.boss_ru %></td>
+    <td><%= department.salutation %><br/><%= department.salutation_ru %></td>
+    <td width="150" align="center">
+    	<%= link_to 'შეცვლა', edit_department_path(department) %> |
+    	<%= link_to 'წაშლა', department, :confirm => 'ნამდვილად გინდათ ამ დირექციის წაშლა?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>

@@ -35,6 +35,10 @@ module ApplicationHelper
       'მართვა'
     when 'indices'
       'ინდექსები'
+    when 'statuses'
+      'სტატუსები'
+    when 'departments'
+      'დირექციები'
     else
       name
     end
@@ -48,13 +52,19 @@ module ApplicationHelper
     elsif cname == 'indices'
       pname = 'admin'
       sname = 'indecies'
+    elsif cname == 'statuses'
+      pname = 'admin'
+      sname = 'statuses'
+    elsif cname == 'departments'
+      pname = 'admin'
+      sname = 'departments'
     end
     [pname, cname]
   end
 
   def all_pages
     pages = [{:name => 'home', :url => home_url},  {:name => 'admin', :url => indices_url}]
-    sub_pages = { 'home' => [], 'admin' => [{:name => 'indices', :url => indices_url}] }
+    sub_pages = { 'home' => [], 'admin' => [{:name => 'indices', :url => indices_url}, {:name => 'statuses', :url => statuses_url}, {:name => 'departments', :url => departments_url }] }
     [pages, sub_pages]
   end
 

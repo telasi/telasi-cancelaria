@@ -1,0 +1,26 @@
+<h1>სტატუსების მართვა</h1>
+
+<div class="actions">
+<%= link_to 'სტატუსის დამატება', new_status_path %>
+</div>
+
+<table>
+  <tr>
+    <th width="16">&nbsp;</th>
+    <th width="200">სახელი</th>
+    <th width="100">დალაგება</th>
+    <th width="150">&nbsp;</th>
+  </tr>
+
+<% @statuses.each do |status| %>
+  <tr>
+    <td class="shade"><%= image_tag status.image_path %></td>
+    <td><%= link_to status.name, status %></td>
+    <td align="right"><%= status.order_by %></td>
+    <td align="center">
+    	<%= link_to 'შეცვლა', edit_status_path(status) %> |
+		<%= link_to 'წაშლა', status, :confirm => 'ნამდვილად გინდათ ამ სტატუსის წაშლა?', :method => :delete %>
+	</td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,25 @@
+<h1><%= image_tag @status.image_path %> <%= @status.name %></h1>
+
+<div class="actions">
+<%= link_to 'შეცვლა', edit_status_path(@status) %> |
+<%= link_to 'სიაში დაბრუნება', statuses_path %>
+</div>
+
+<table width="500">
+<tr>
+<td width="200" class="shade">დასახელება</td>
+<td><%= @status.name %></td>
+</tr>
+<tr>
+<td class="shade">გამოსახულება</td>
+<td><%= image_tag @status.image_path %> <%= @status.image %></td>
+</tr>
+<tr>
+<td class="shade">დალაგება</td>
+<td><%= @status.order_by %></td>
+</tr>
+<tr>
+<td class="shade">გაგზავნის თარიღის განახლება</td>
+<td><%= @status.update_sent_date ? 'კი' : 'არა' %></td>
+</tr>
+</table>

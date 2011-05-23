@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  name_ru: MyString
+  boss: MyString
+  boss_ru: MyString
+  salutation: MyString
+  salutation_ru: MyString
+  order_by: 1
+  print: false
+
+two:
+  name: MyString
+  name_ru: MyString
+  boss: MyString
+  boss_ru: MyString
+  salutation: MyString
+  salutation_ru: MyString
+  order_by: 1
+  print: false

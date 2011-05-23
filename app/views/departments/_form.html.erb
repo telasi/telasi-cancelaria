@@ -1,0 +1,49 @@
+<%= form_for(@department) do |f| %>
+  <% if @department.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@department.errors.count, "error") %> prohibited this department from being saved:</h2>
+
+      <ul>
+      <% @department.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'დასახელება' %><br />
+    <%= f.text_field :name, :style => 'width: 500px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :name_ru, 'დასახელება (რუსული)' %><br />
+    <%= f.text_field :name_ru, :style => 'width: 500px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :boss, 'უფროსის სახელი, გვარი' %><br />
+    <%= f.text_field :boss, :style => 'width: 500px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :boss_ru, 'უფროსის სახელი, გვარი (რუსული)' %><br />
+    <%= f.text_field :boss_ru, :style => 'width: 500px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :salutation, 'მიმართვა' %><br />
+    <%= f.text_field :salutation, :style => 'width: 500px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :salutation_ru, 'მიმართვა (რუსული)' %><br />
+    <%= f.text_field :salutation_ru, :style => 'width: 500px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :order_by, 'რიგითი ნომერი' %><br />
+    <%= f.text_field :order_by %>
+  </div>
+  <div class="field">
+    <%= f.label :print, 'დაიბეჭდოს თუ არა სამსახურებრივი წერილის სათაურში?' %>
+    <%= f.check_box :print %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'შენახვა' %> ან <%= link_to 'გაუქმება', @departamen ? @departament : departments_path %>
+  </div>
+<% end %>

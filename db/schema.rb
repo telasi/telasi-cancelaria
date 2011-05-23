@@ -10,7 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110522080521) do
+ActiveRecord::Schema.define(:version => 20110523080730) do
+
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.string   "name_ru"
+    t.string   "boss"
+    t.string   "boss_ru"
+    t.string   "salutation"
+    t.string   "salutation_ru"
+    t.integer  "order_by"
+    t.boolean  "print"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "departments", ["order_by"], :name => "index_departments_on_order_by"
 
   create_table "indices", :force => true do |t|
     t.string   "prefix"
@@ -22,5 +37,16 @@ ActiveRecord::Schema.define(:version => 20110522080521) do
   end
 
   add_index "indices", ["prefix"], :name => "index_indices_on_prefix"
+
+  create_table "statuses", :force => true do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "order_by"
+    t.boolean  "update_sent_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "statuses", ["order_by"], :name => "index_statuses_on_order_by"
 
 end

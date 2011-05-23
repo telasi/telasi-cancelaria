@@ -28,7 +28,6 @@
     <%= f.collection_select(:relation_id, Index.all(:order => 'prefix'), :id, :to_s, :include_blank => true) %>
   </div>
   <div class="actions">
-    <%= f.submit 'შენავა' %> ან
-    <% if @index.id %><%= link_to 'გაუქმება', @index %><% else -%><%= link_to 'გაუქმება', indices_url %><% end -%>
+    <%= f.submit 'შენავა' %> ან <%= link_to 'გაუქმება', @index ? @index : indices_url %>
   </div>
 <% end %>

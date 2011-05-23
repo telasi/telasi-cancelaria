@@ -17,8 +17,10 @@
     <td class="shade"><%= index.prefix %></td>
     <td><%= link_to index.description, index %></td>
     <td align="right"><%= index.last_number %></td>
-    <td><%= link_to 'შეცვლა', edit_index_path(index) %> |
-    <%= link_to 'წაშლა', index, :confirm => 'ნამდვილად გინდათ ამ ინდექსის წაშლა?', :method => :delete %></td>
+    <td align="center">
+    	<%= link_to 'შეცვლა', edit_index_path(index) %> |
+	    <%= link_to 'წაშლა', index, :confirm => 'ნამდვილად გინდათ ამ ინდექსის წაშლა?', :method => :delete %>
+	</td>
   </tr>
 <% end -%>
 <% else -%>

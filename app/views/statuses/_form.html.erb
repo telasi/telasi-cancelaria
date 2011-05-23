@@ -1,0 +1,33 @@
+<%= form_for(@status) do |f| %>
+  <% if @status.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@status.errors.count, "error") %> prohibited this status from being saved:</h2>
+
+      <ul>
+      <% @status.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'დასახელება' %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :image, 'გამოსახულება' %><br />
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :order_by, 'დალაგება' %><br />
+    <%= f.text_field :order_by %>
+  </div>
+  <div class="field">
+    <%= f.label :update_sent_date, 'გაგზავნის თარიღის განახლება' %><br />
+    <%= f.check_box :update_sent_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'შენახვა' %> ან <%= link_to 'გაუქმება', @status ? @status : statuses_path %> 
+  </div>
+<% end %>

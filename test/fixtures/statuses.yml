@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  image: MyString
+  order_by: 1
+  update_sent_date: false
+
+two:
+  name: MyString
+  image: MyString
+  order_by: 1
+  update_sent_date: false
