@@ -26,7 +26,7 @@ module ApplicationHelper
       ""
     end
   end
-  
+
   def menu_item_caption(name)
     case name
     when 'home'
@@ -39,6 +39,10 @@ module ApplicationHelper
       'სტატუსები'
     when 'departments'
       'დირექციები'
+    when 'employees'
+      'თანამშრომლები'
+    when 'letters'
+      'განცხადებები'
     else
       name
     end
@@ -58,13 +62,19 @@ module ApplicationHelper
     elsif cname == 'departments'
       pname = 'admin'
       sname = 'departments'
+    elsif cname == 'employees'
+      pname = 'admin'
+      sname = 'employees'
+    elsif cname == 'letters'
+      pname = 'letters'
+      sname = 'letters'
     end
     [pname, cname]
   end
 
   def all_pages
-    pages = [{:name => 'home', :url => home_url},  {:name => 'admin', :url => indices_url}]
-    sub_pages = { 'home' => [], 'admin' => [{:name => 'indices', :url => indices_url}, {:name => 'statuses', :url => statuses_url}, {:name => 'departments', :url => departments_url }] }
+    pages = [{:name => 'home', :url => home_url}, {:name => 'letters', :url => letters_url}, {:name => 'admin', :url => indices_url}]
+    sub_pages = { 'home' => [], 'letters' => [],   'admin' => [{:name => 'indices', :url => indices_url}, {:name => 'statuses', :url => statuses_url}, {:name => 'departments', :url => departments_url }, {:name => 'employees', :url => employees_url }] }
     [pages, sub_pages]
   end
 

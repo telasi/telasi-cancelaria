@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  own_number: MyString
+  number: MyString
+  index: 
+  status: 
+  received: 2011-05-27
+  sent: 2011-05-27
+  description: MyString
+  name: MyString
+  phone: MyString
+  address: MyString
+  custnumb: MyString
+
+two:
+  own_number: MyString
+  number: MyString
+  index: 
+  status: 
+  received: 2011-05-27
+  sent: 2011-05-27
+  description: MyString
+  name: MyString
+  phone: MyString
+  address: MyString
+  custnumb: MyString

@@ -1,4 +1,8 @@
 Canc::Application.routes.draw do
+  resources :letters
+
+  resources :employees
+
   resources :departments
 
   resources :statuses

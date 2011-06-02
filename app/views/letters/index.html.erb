@@ -1,0 +1,51 @@
+<div class="letter_indices">
+<h2>ინდექსები</h2>
+<div class="letter_index"><%= link_to 'ყველა', letters_url(:index_id=>0), :class => (@selected_index == 0 ? 'selected':'common') %></div>
+<% @indecies.each do |idx| -%>
+<div class="letter_index"><%= link_to idx.prefix, letters_url(:index_id=>idx.id), :class => (@selected_index == idx.id ? 'selected':'common') %></div>
+<% end -%>
+</div>
+
+<div class="letters">
+<div class="actions">
+<%= link_to 'ახალი განცხადება', new_letter_path(:index_id => @selected_index) %>
+</div>
+
+<% if @letters.any? -%>
+<table>
+<tr>
+<th>&nbsp;</th>
+<th>ნომერი</th>
+<th>თარიღი</th>
+<th>მოკლე შინაარსი</th>
+<th>გამომგზავნი</th>
+<th>&nbsp;</th>
+</tr>
+<% @letters.each do |l| -%>
+<tr>
+<td class="shadow"><%= image_tag(l.status.image_path) %></td>
+<td width="80"><b><%= link_to l.number, l %></b>
+<% if l.own_number -%><br/><span class="secondary_text"><%= l.own_number %></span><% end -%>
+</td>
+<td width="85"><%= l.received.strftime("%d-%b-%Y") %>
+<% if l.sent -%><br/><span class="secondary_text"><%= l.sent.strftime("%d-%b-%Y") %></span><% end -%>
+</td>
+<td width="250"><%= l.description %></td>
+<td width="250"><%= l.name %> <% if l.custnumb and not l.custnumb.empty? %>(<%= l.custnumb %>)<% end %>
+<br/>
+<% if l.phone and not l.phone.empty?%><span class="secondary_text"><%= l.phone %></span> | <% end %>
+<% if l.address and not l.address.empty?%><span class="secondary_text"><%= l.address %></span><% end%>
+</td>
+<td width="120" align="center">
+<%= link_to 'შეცვლა', edit_letter_path(l) %> |
+<%= link_to 'წაშლა', l, :confirm => 'ნამდვილად გინდათ ამ წერილის წაშლა?', :method => :delete %>
+</td>
+</tr>
+<% end -%>
+</table>
+<% else -%>
+<div class="empty">სია ცარიელია</div>
+<% end -%>
+</div>
+
+<div style="clear:both"></div>

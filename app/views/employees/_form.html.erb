@@ -1,0 +1,37 @@
+<%= form_for(@employee) do |f| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :department, 'დეპარტამენტი' %><br />
+    <%= f.collection_select(:department_id, Department.all(:order => 'order_by'), :id, :to_s, :include_blank => false) %>
+  </div>
+  <div class="field">
+    <%= f.label :name, 'სახელი, გვარი' %><br />
+    <%= f.text_field :name, :style => 'width: 400px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :name_ru, 'სახელი, გვარი (რუსულად)' %><br />
+    <%= f.text_field :name_ru, :style => 'width: 400px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :order_by, 'რიგითი ნომერი' %><br />
+    <%= f.text_field :order_by %>
+  </div>
+  <div class="field">
+    <%= f.label :print, 'დაიბეჭდოს სამსახურეობრივ წერილში?' %>
+    <%= f.check_box :print %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'შენახვა' %> ან <%= link_to 'გაუქმება', @employee ? @employee : employees_path %>
+  </div>
+<% end %>

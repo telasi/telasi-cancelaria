@@ -5,4 +5,9 @@ class Status < ActiveRecord::Base
   def image_path
     "16x16/#{image}.png"
   end
+
+  def to_s
+    self.name
+  end
+
 end

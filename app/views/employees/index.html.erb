@@ -1,0 +1,26 @@
+<h1>თანამშრომელთა მართვა</h1>
+<div class="actions"><%= link_to 'თანამშრომლის დამატება', new_employee_path %></div>
+<table>
+  <tr>
+  	<th>&nbsp;</th>
+    <th>დირექცია</th>
+    <th>სახელი, გვარი</th>
+    <th>სახელი, გვარი (რუსულად)</th>
+    <th>&nbsp;</th>
+    <th></th>
+  </tr>
+
+<% @employees.each do |employee| %>
+  <tr>
+	<td class="shade"><%= employee.order_by %></td>
+    <td><%= employee.department.name %></td>
+    <td><%= link_to employee.name, employee %></td>
+    <td><%= employee.name_ru %></td>
+    <td><% if employee.print %><%= image_tag '16x16/printer.png' %><% end %></td>
+    <td width="200" align="center">
+    	<%= link_to 'შეცვლა', edit_employee_path(employee) %> |
+    	<%= link_to 'წაშლა', employee, :confirm => 'ნამდვილად გინდათ ამ თანამშრომლის წაშლა?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,99 @@
+<%
+new_mode = @letter.id.nil?
+-%>
+
+<%= form_for(@letter) do |f| %>
+  <% if @letter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@letter.errors.count, "error") %> prohibited this letter from being saved:</h2>
+
+      <ul>
+      <% @letter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% if new_mode -%>
+  <div class="field">
+    <%= f.label :index, 'ინდექსი' %><br />
+    <%= f.collection_select(:index_id, Index.all(:order => 'prefix'), :id, :to_s, :include_blank => false) %>
+  </div>
+<% else -%>
+  <div class="field">
+    <%= f.label :status, 'შესრულების სტატუსი' %><br />
+    <%= f.collection_select(:status_id, Status.all(:order => 'order_by'), :id, :to_s, :include_blank => false) %>
+  </div>
+<% end -%>
+
+<div class="field">
+  <%= f.label :own_number, 'საკუთარი ნომერი' %><br />
+  <%= f.text_field :own_number, :style => 'width: 150px;' %>
+</div>
+
+<% if @index %>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+<% end %>
+
+<ul class="field_list">
+<li>
+  <%= f.label :received, 'შემოსვლის თარიღი' %><br />
+  <%= f.text_field :received2, :class => 'datepicker', :style => 'width: 150px;' %>
+</li>
+<% unless new_mode -%>
+<li>
+  <%= f.label :sent, 'გაგზავნის თარიღი' %><br />
+  <%= f.text_field :sent2, :class => 'datepicker', :style => 'width: 150px;' %>
+</li>
+<% end -%>
+</ul>
+
+<div style="clear: both;">
+</div>
+
+<div class="field">
+  <%= f.label :description, 'მოკლე შინაარსი' %><br />
+  <%= f.text_field :description, :style => 'width: 600px;' %>
+</div>
+
+<ul class="field_list">
+<li>
+  <div class="field">
+    <%= f.label :name, 'განმცხადებლის სახელი, დასახელება' %><br />
+    <%= f.text_field :name, :style => 'width: 400px;' %>
+  </div>
+</li>
+<li>
+  <div class="field">
+    <%= f.label :custnumb, 'აბონენტის ნომერი' %><br />
+    <%= f.text_field :custnumb, :style => 'width: 185px;' %>
+  </div>
+</li>
+</ul>
+<div style="clear: both;"></div>
+
+<ul class="field_list">
+<li>
+  <div class="field">
+    <%= f.label :address, 'მისამართი' %><br />
+    <%= f.text_field :address, :style => 'width: 400px;' %>
+  </div>
+</li>
+<li>
+  <div class="field">
+    <%= f.label :phone, 'ტელეფონი' %><br />
+    <%= f.text_field :phone, :style => 'width: 185px;' %>
+  </div>
+</li>
+</ul>
+<div style="clear: both;"></div>
+
+<div class="actions">
+<%= f.submit 'შენახვა' %> ან
+<%= link_to 'გაუქმება', new_mode ? letters_url(:index_id => params[:index_id]) : @letter  %>
+</div>
+<% end %>
