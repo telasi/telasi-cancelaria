@@ -1,0 +1,32 @@
+<table>
+<tr>
+<td class="shade">ნომერი</td>
+<td><%= link_to @letter.number, @letter.index %></td>
+<td class="shade">საკუთარი ნომერი</td>
+<td colspan="5"><%= (@letter.own_number and not @letter.own_number.empty?) ? @letter.own_number : '(ცარიელი)' %></td>
+</tr>
+<tr>
+<td class="shade">სტატუსი</td>
+<td colspan="7"><%= image_tag @letter.status.image_path %> <%= link_to @letter.status, @letter.status %></td>
+</tr>
+<tr>
+<td class="shade">შემოსვლის თარიღი</td>
+<td><%= @letter.received.strftime("%d-%b-%Y") %></td>
+<td class="shade">გაცემის თარიღი</td>
+<td colspan="5"><%= @letter.sent ? @letter.sent.strftime("%d-%b-%Y") : '(ცარიელი)' %></td>
+</tr>
+<tr>
+<td class="shade">შემოიტანა</td>
+<td><%= @letter.name %></td>
+<td class="shade">მისამართი</td>
+<td><%= (@letter.address and not @letter.address.empty?) ? @letter.address : '--' %></td>
+<td class="shade">ტელეფონი</td>
+<td><%= (@letter.phone and not @letter.phone.empty?) ? @letter.phone : '--' %></td>
+<td class="shade">აბ. №</td>
+<td><%= (@letter.custnumb and not @letter.custnumb.empty?) ? @letter.custnumb : '--' %></td>
+</tr>
+<tr>
+<td class="shade">მოკლე აღწერილობა</td>
+<td colspan="7"><%= @letter.description %></td>
+</tr>
+</table>

@@ -1,6 +1,4 @@
-<%
-new_mode = @letter.id.nil?
--%>
+<% new_mode = @letter.id.nil?-%>
 
 <%= form_for(@letter) do |f| %>
   <% if @letter.errors.any? %>

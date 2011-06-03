@@ -99,4 +99,28 @@ class LettersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def add_department
+    @letter = Letter.find(params[:letter_id])
+    @letter_department = LetterDepartment.new
+    if request.post?
+      dep = Department.find(params[:letter_department][:department_id])
+      lds = LetterDepartment.where(:letter_id => @letter.id, :department_id => dep.id)
+      if lds.empty?
+        @letter_department.department = dep
+        @letter_department.letter = @letter
+        @letter_department.save
+      end
+      redirect_to @letter
+    end
+  end
+  
+  def remove_department
+    l = Letter.find(params[:letter_id])
+    d = Department.find(params[:department_id])
+    ld = LetterDepartment.where(:department_id => d.id, :letter_id => l.id).first
+    ld.destroy
+    redirect_to l 
+  end
+
 end
