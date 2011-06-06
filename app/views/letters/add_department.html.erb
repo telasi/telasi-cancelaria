@@ -8,7 +8,7 @@
 <%= f.collection_select(:department_id, Department.all(:order => 'order_by'), :id, :to_s, :include_blank => false) %>
 <br/>
 <div class="actions">
-<%= f.submit 'განყოფილების დამატება' %> ან
+<%= f.submit 'დირექციის დამატება' %> ან
 <%= link_to 'გაუქმება', @letter %>
 </div>
 <% end -%>

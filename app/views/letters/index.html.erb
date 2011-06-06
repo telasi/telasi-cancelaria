@@ -8,7 +8,7 @@
 
 <div class="letters">
 <div class="actions">
-<%= link_to 'ახალი განცხადება', new_letter_path(:index_id => @selected_index) %>
+<%= link_to 'ახალი განცხადება', new_letter_path(:index_id => @selected_index), :class => 'create' %>
 </div>
 
 <% if @letters.any? -%>
@@ -19,7 +19,7 @@
 <th>თარიღი</th>
 <th>მოკლე შინაარსი</th>
 <th>გამომგზავნი</th>
-<th>&nbsp;</th>
+<th style="background-image: url(<%= image_path '16x16/cog.png' %>); background-repeat: no-repeat; background-position: 50% 50%;">&nbsp;</th>
 </tr>
 <% @letters.each do |l| -%>
 <tr>
@@ -36,9 +36,9 @@
 <% if l.phone and not l.phone.empty?%><span class="secondary_text"><%= l.phone %></span> | <% end %>
 <% if l.address and not l.address.empty?%><span class="secondary_text"><%= l.address %></span><% end%>
 </td>
-<td width="120" align="center">
-<%= link_to 'შეცვლა', edit_letter_path(l) %> |
-<%= link_to 'წაშლა', l, :confirm => 'ნამდვილად გინდათ ამ წერილის წაშლა?', :method => :delete %>
+<td width="150" align="center">
+<%= link_to 'შეცვლა', edit_letter_path(l), :class => 'edit' %>
+<%= link_to 'წაშლა', l, :confirm => 'ნამდვილად გინდათ ამ წერილის წაშლა?', :method => :delete, :class => 'delete' %>
 </td>
 </tr>
 <% end -%>

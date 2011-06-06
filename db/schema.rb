@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110602125439) do
+ActiveRecord::Schema.define(:version => 20110604083255) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(:version => 20110602125439) do
   end
 
   add_index "letter_departments", ["letter_id", "department_id"], :name => "index_letter_departments_on_letter_id_and_department_id"
+
+  create_table "letter_employees", :force => true do |t|
+    t.integer  "letter_id"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "letter_employees", ["letter_id", "employee_id"], :name => "index_letter_employees_on_letter_id_and_employee_id"
 
   create_table "letters", :force => true do |t|
     t.string   "own_number"

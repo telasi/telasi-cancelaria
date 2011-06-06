@@ -2,7 +2,9 @@ class Letter < ActiveRecord::Base
   belongs_to :index
   belongs_to :status
   has_many :letter_departments
+  has_many :letter_employees
   has_many :departments, :through => :letter_departments
+  has_many :employees, :through => :letter_employees
   validates_presence_of :number, :description, :name
 
   def received2

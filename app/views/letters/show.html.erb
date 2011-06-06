@@ -1,7 +1,7 @@
 <h1>განცხადება №<%= @letter.number %></h1>
 <div class="actions">
-<%= link_to 'შეცვლა', edit_letter_path(@letter) %> |
-<%= link_to 'სიაში დაბრუნება', letters_path(:index_id => @letter.index.id) %>
+<%= link_to 'შეცვლა', edit_letter_path(@letter), :class => 'edit' %> |
+<%= link_to 'სიაში დაბრუნება', letters_path(:index_id => @letter.index.id), :class => 'back' %>
 </div>
 <%= render :partial => 'letters/head' %>
 
@@ -12,16 +12,31 @@
 </div>
 
 <% if @letter.departments.any? -%>
-<% index = 1; @letter.departments.each do |d| -%>
+<% @letter.departments.each do |d| -%>
 <div class="list">
 <%= image_tag '16x16/group.png' %>
 <%= d.name %>
-<%= link_to 'წაშლა', remove_department_url(:letter_id => @letter.id, :department_id => d.id), :confirm => 'ნამდვილად გინდათ დირექციის წაშლა?' %>
+<%= link_to 'წაშლა', remove_department_url(:letter_id => @letter.id, :department_id => d.id), :confirm => 'ნამდვილად გინდათ დირექციის წაშლა?', :class => 'delete' %>
 </div>
-<% index += 1; end -%>
+<% end -%>
 <% else -%>
 <p class="secondary_text">სია ცარიელია</p>
 <% end -%>
 
 <!-- თანამშრომლები -->
 <h2 class="common">თანამშრომლები</h2>
+<div class="actions">
+<%= link_to 'თანამშრომლის დამატება', add_employee_url(:letter_id => @letter.id) %>
+</div>
+
+<% if @letter.employees.any? -%>
+<% @letter.employees.each do |e| -%>
+<div class="list">
+<%= image_tag '16x16/user.png' %>
+<%= e.name %>
+<%= link_to 'წაშლა', remove_employee_url(:letter_id => @letter.id, :employee_id => e.id), :confirm => 'ნამდვილად გინდათ თანამშრომლის წაშლა?', :class => 'delete' %>
+</div>
+<% end -%>
+<% else -%>
+<p class="secondary_text">სია ცარიელია</p>
+<% end -%>

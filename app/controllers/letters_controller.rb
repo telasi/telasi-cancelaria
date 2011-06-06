@@ -63,7 +63,7 @@ class LettersController < ApplicationController
       if @letter.save
         @letter.index.last_number = @letter.index.last_number + 1
         @letter.index.save!
-        format.html { redirect_to(@letter, :notice => 'Letter was successfully created.') }
+        format.html { redirect_to(@letter, :notice => 'განცხადება შექმნილია.') }
         format.xml  { render :xml => @letter, :status => :created, :location => @letter }
       else
         format.html { render :action => "new" }
@@ -79,7 +79,7 @@ class LettersController < ApplicationController
 
     respond_to do |format|
       if @letter.update_attributes(params[:letter])
-        format.html { redirect_to(@letter, :notice => 'Letter was successfully updated.') }
+        format.html { redirect_to(@letter, :notice => 'განცხადება განახლებულია.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -123,4 +123,28 @@ class LettersController < ApplicationController
     redirect_to l 
   end
 
+  def add_employee
+    @letter = Letter.find(params[:letter_id])
+    @letter_employee = LetterEmployee.new
+    if request.post?
+      emp = Employee.find(params[:letter_employee][:employee_id])
+      eds = LetterEmployee.where(:letter_id => @letter.id, :employee_id => emp.id)
+      if eds.empty?
+        @letter_employee.employee = emp
+        @letter_employee.letter = @letter
+        @letter_employee.save
+      end
+      redirect_to @letter
+    end
+  end
+
+  
+  def remove_employee
+    l = Letter.find(params[:letter_id])
+    e = Employee.find(params[:employee_id])
+    le = LetterEmployee.where(:letter_id => l.id, :employee_id => e.id).first
+    le.destroy
+    redirect_to l
+  end
+  
 end

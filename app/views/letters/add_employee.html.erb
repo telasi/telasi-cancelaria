@@ -1,0 +1,14 @@
+<h1>განცხადება №<%= @letter.number %></h1>
+<%= render :partial => 'letters/head' %>
+
+<h2 class="common">თანამშრომლის დამატება</h2>
+<%= form_for(@letter_employee, :url => add_employee_url) do |f| -%>
+<%= hidden_field_tag :letter_id, @letter.id  %>
+<%= f.label :employee, 'აარჩიეთ თანამშრომელი' %><br />
+<%= f.collection_select(:employee_id, Employee.all(:order => 'order_by'), :id, :to_s, :include_blank => false) %>
+<br/>
+<div class="actions">
+<%= f.submit 'თანამშრომლის დამატება' %> ან
+<%= link_to 'გაუქმება', @letter %>
+</div>
+<% end -%>
