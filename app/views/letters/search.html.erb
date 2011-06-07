@@ -1,0 +1,38 @@
+<div class="letter_search_fields">
+<% form_tag (search_url, :method => :get) do -%>
+<%= label_tag 'ინდექსი' %>
+<%= select_tag(:index_id, options_for_select(Index.all(:order => 'prefix').collect{|x| [x.prefix, x.id]}, params['index_id']), :include_blank => '(ყველა)') %>
+<%= label_tag 'სტატუსი' %>
+<%= select_tag(:status_id, options_for_select(Status.all(:order => 'order_by').collect{|x| [x.name, x.id]}, params['status_id']), :include_blank => '(ყველა)') %>
+<br/>
+<%= label_tag 'ნომერი' %>
+<%= text_field_tag(:number, params[:number]) %>
+<%= label_tag 'საკუთარი ნომერი' %>
+<%= text_field_tag(:own_number, params[:own_number]) %>
+<br/>
+<%= label_tag 'შემოსვლის თარიღი' %>
+<%= text_field_tag(:date1, params['date1'], :class=>'datepicker', :style=>'width:100px;') %> -
+<%= text_field_tag(:date2, params['date2'], :class=>'datepicker', :style=>'width:100px;') %>
+<%= label_tag 'გასვლის თარიღი' %>
+<%= text_field_tag(:sdate1, params['sdate1'], :class=>'datepicker', :style=>'width:100px;') %> -
+<%= text_field_tag(:sdate2, params['sdate2'], :class=>'datepicker', :style=>'width:100px;') %>
+<br/>
+<%= label_tag 'მოკლე აღწერილობა' %>
+<%= text_field_tag(:description, params[:description], :style=>'width:400px;') %>
+<br/>
+<%= label_tag 'სახელი' %>
+<%= text_field_tag(:name, params[:name], :style=>'width:150px;') %>
+<%= label_tag 'აბ.№' %>
+<%= text_field_tag(:custnumb, params[:custnumb], :style=>'width:150px;') %>
+<%= label_tag 'მისამართი' %>
+<%= text_field_tag(:address, params[:address], :style=>'width:150px;') %>
+<%= label_tag 'ტელეფონი' %>
+<%= text_field_tag(:phone, params[:phone], :style=>'width:150px;') %>
+<br/>
+<%= submit_tag 'ძებნა' %>
+<% end -%>
+</div>
+
+<%= render :partial => 'letters/letter' %>
+
+<div style="clear: both;"></div>

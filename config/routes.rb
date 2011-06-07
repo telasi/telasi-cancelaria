@@ -11,6 +11,7 @@ Canc::Application.routes.draw do
   match '/remove_department', :controller => :letters, :action => :remove_department
   match '/add_employee', :controller => :letters, :action => :add_employee
   match '/remove_employee', :controller => :letters, :action => :remove_employee
+  match '/search', :controller => :letters, :action => :search
 
   root :to => "site#index"
 end

@@ -16,7 +16,7 @@
 <% if new_mode -%>
   <div class="field">
     <%= f.label :index, 'ინდექსი' %><br />
-    <%= f.collection_select(:index_id, Index.all(:order => 'prefix'), :id, :to_s, :include_blank => false) %>
+    <%= f.collection_select(:index_id, Index.all(:order => 'prefix').map(), :id, :to_s, :include_blank => false) %>
   </div>
 <% else -%>
   <div class="field">

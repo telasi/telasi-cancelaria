@@ -1,14 +1,15 @@
 <h1>განცხადება №<%= @letter.number %></h1>
 <div class="actions">
+<%= link_to 'სიაში დაბრუნება', letters_path(:index_id => @letter.index.id), :class => 'back' %> |
 <%= link_to 'შეცვლა', edit_letter_path(@letter), :class => 'edit' %> |
-<%= link_to 'სიაში დაბრუნება', letters_path(:index_id => @letter.index.id), :class => 'back' %>
+<%= link_to 'ახალი განცხადება', new_letter_path(:index_id => @selected_index), :class => 'create' %>
 </div>
 <%= render :partial => 'letters/head' %>
 
 <!-- დირექციები -->
 <h2 class="common">დირექციები</h2>
 <div class="actions">
-<%= link_to 'დირექციის დამატება', add_department_url(:letter_id => @letter.id) %>
+<%= link_to 'დირექციის დამატება', add_department_url(:letter_id => @letter.id), :class => 'create' %>
 </div>
 
 <% if @letter.departments.any? -%>
@@ -26,7 +27,7 @@
 <!-- თანამშრომლები -->
 <h2 class="common">თანამშრომლები</h2>
 <div class="actions">
-<%= link_to 'თანამშრომლის დამატება', add_employee_url(:letter_id => @letter.id) %>
+<%= link_to 'თანამშრომლის დამატება', add_employee_url(:letter_id => @letter.id), :class => 'create' %>
 </div>
 
 <% if @letter.employees.any? -%>

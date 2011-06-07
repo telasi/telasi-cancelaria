@@ -43,6 +43,10 @@ module ApplicationHelper
       'თანამშრომლები'
     when 'letters'
       'განცხადებები'
+    when 'letter_list'
+      'განცხადებების სია'
+    when 'search'
+     'ძებნა'
     else
       name
     end
@@ -55,7 +59,7 @@ module ApplicationHelper
       pname = 'home'
     elsif cname == 'indices'
       pname = 'admin'
-      sname = 'indecies'
+      sname = 'indices'
     elsif cname == 'statuses'
       pname = 'admin'
       sname = 'statuses'
@@ -67,14 +71,22 @@ module ApplicationHelper
       sname = 'employees'
     elsif cname == 'letters'
       pname = 'letters'
-      sname = 'letters'
+      if aname == 'search'
+        sname = 'search'
+      else
+        sname = 'letter_list'
+      end
     end
-    [pname, cname]
+    [pname, sname]
   end
 
   def all_pages
     pages = [{:name => 'home', :url => home_url}, {:name => 'letters', :url => letters_url}, {:name => 'admin', :url => indices_url}]
-    sub_pages = { 'home' => [], 'letters' => [],   'admin' => [{:name => 'indices', :url => indices_url}, {:name => 'statuses', :url => statuses_url}, {:name => 'departments', :url => departments_url }, {:name => 'employees', :url => employees_url }] }
+    sub_pages = {
+      'home' => [],
+      'letters' => [{:name => 'letter_list', :url => letters_url}, {:name => 'search', :url => search_url}],
+      'admin' => [{:name => 'indices', :url => indices_url}, {:name => 'statuses', :url => statuses_url}, {:name => 'departments', :url => departments_url }, {:name => 'employees', :url => employees_url }]
+    }
     [pages, sub_pages]
   end
 
