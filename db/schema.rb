@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110604083255) do
+ActiveRecord::Schema.define(:version => 20110616081751) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -97,5 +97,22 @@ ActiveRecord::Schema.define(:version => 20110604083255) do
   end
 
   add_index "statuses", ["order_by"], :name => "index_statuses_on_order_by"
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "hashed_password"
+    t.string   "salt"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.boolean  "admin"
+    t.boolean  "canc_empl"
+    t.integer  "department_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["department_id"], :name => "index_users_on_department_id"
+  add_index "users", ["name"], :name => "index_users_on_name"
 
 end

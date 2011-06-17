@@ -1,0 +1,37 @@
+<h1><%= @user.full_name %></h1>
+
+<div class="actions">
+<%= link_to 'შეცვლა', edit_user_path(@user) %> |
+<%= link_to 'სიაში დაბრუნება', users_path %>
+</div>
+
+<table width="500">
+<tr>
+<td width="150" class="shade">მომხმარებელი</td>
+<td><%= @user.name %></td>
+</tr>
+<tr>
+<td class="shade">სახელი</td>
+<td><%= @user.first_name %></td>
+</tr>
+<tr>
+<td class="shade">გვარი</td>
+<td><%= @user.last_name %></td>
+</tr>
+<tr>
+<td class="shade">ტელეფონი</td>
+<td><%= @user.phone %></td>
+</tr>
+<tr>
+<td class="shade">დირექცია</td>
+<td><%= @user.department ? link_to(@user.department, @user.department) : '(ცარიელი)' %></td>
+</tr>
+<tr>
+<td class="shade">ადმინისტრატორი?</td>
+<td><%= @user.admin ? 'კი' : 'არა' %></td>
+</tr>
+<tr>
+<td class="shade">კანც.თან.?</td>
+<td><%= @user.canc_empl ? 'კი' : 'არა' %></td>
+</tr>
+</table>

@@ -1,0 +1,51 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'მომხმარებელის სახელი' %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password, 'პაროლი' %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, 'დადასტურება' %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name, 'სახელი' %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name, 'გვარი' %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :phone, 'ტელეფონი' %><br />
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :department, 'დირექცია' %><br />
+    <%= f.collection_select(:department_id, Department.all(:order => 'order_by'), :id, :to_s, :include_blank => true) %>
+  </div>
+  <div class="field">
+    <%= f.label :admin, 'ადმინისტრატორი არის?' %> <%= f.check_box :admin %>
+  </div>
+  <div class="field">
+    <%= f.label :canc_empl, 'კანცელარიაში მუშაობს?' %> <%= f.check_box :canc_empl %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'შენახვა' %> ან <%= link_to 'გაუქმება', @user ? users_path : @user %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<% form_tag do -%>
+მომხმარებლის სახელი: <br/>
+<%= text_field_tag :name, params[:name], :style => 'width: 300px;' %> <br/>
+პაროლი: <br/>
+<%= password_field_tag :password, params[:password], :style => 'width: 300px;' %> <br/>
+<%= submit_tag 'შესვლა' %>
+<% end -%>
+
+<% if @user %>
+<p>
+<%= @user.full_name %>
+</p>
+<% end %>

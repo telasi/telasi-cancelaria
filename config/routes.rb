@@ -1,4 +1,5 @@
 Canc::Application.routes.draw do
+  resources :users
   resources :letters
   resources :employees
   resources :departments
@@ -6,6 +7,9 @@ Canc::Application.routes.draw do
   resources :indices
 
   match '/home', :controller => :site, :action => :index
+  match '/login', :controller => :site, :action => :login
+  match '/logout', :controller => :site, :action => :logout
+  
   match '/style', :controller => :style, :action => :style
   match '/add_department', :controller => :letters, :action => :add_department
   match '/remove_department', :controller => :letters, :action => :remove_department

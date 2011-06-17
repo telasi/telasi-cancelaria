@@ -47,6 +47,8 @@ module ApplicationHelper
       'განცხადებების სია'
     when 'search'
      'ძებნა'
+    when 'users'
+      'მომხმარებლები'
     else
       name
     end
@@ -76,6 +78,9 @@ module ApplicationHelper
       else
         sname = 'letter_list'
       end
+    elsif cname == 'users'
+      pname = 'admin'
+      sname = 'users'
     end
     [pname, sname]
   end
@@ -85,7 +90,7 @@ module ApplicationHelper
     sub_pages = {
       'home' => [],
       'letters' => [{:name => 'letter_list', :url => letters_url}, {:name => 'search', :url => search_url}],
-      'admin' => [{:name => 'indices', :url => indices_url}, {:name => 'statuses', :url => statuses_url}, {:name => 'departments', :url => departments_url }, {:name => 'employees', :url => employees_url }]
+      'admin' => [{:name => 'indices', :url => indices_url}, {:name => 'statuses', :url => statuses_url}, {:name => 'departments', :url => departments_url }, {:name => 'employees', :url => employees_url }, {:name => 'users', :url => users_url }]
     }
     [pages, sub_pages]
   end

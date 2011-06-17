@@ -1,0 +1,32 @@
+<h1>მომხმარებლები</h1>
+
+<div class="actions">
+<%= link_to 'ახალი მომხმარებელი', new_user_path %>
+</div>
+
+<table>
+  <tr>
+    <th width="150">მომხმარ.</th>
+    <th width="150">სახელი</th>
+    <th width="150">გვარი</th>
+    <th width="100">ტელეფ</th>
+    <th width="50">ადმინ?</th>
+    <th width="50">კანც?</th>
+    <th width="150">&nbsp;</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td class="shade"><%= link_to user.name, user %></td>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.phone %></td>
+    <td><%= user.admin %></td>
+    <td><%= user.canc_empl %></td>
+    <td align="center">
+    	<%= link_to 'შეცვლა', edit_user_path(user) %> |
+    	<%= link_to 'წაშლა', user, :confirm => 'ნამდვილად გინდათ ამ მომხმარებლის წაშლა?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
