@@ -24,6 +24,7 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   # GET /employees/new.xml
   def new
+    redirect_to(employees_url, :notice => 'არ გაქვთ ახალი თანამშრომლის დამატების უფლება!') and return if !get_current_user.can_edit_employees
     @employee = Employee.new
 
     respond_to do |format|
@@ -34,6 +35,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1/edit
   def edit
+    redirect_to(employees_url, :notice => 'არ გაქვთ თანამშრომლის შეცვლის უფლება!') and return if !get_current_user.can_edit_employees
     @employee = Employee.find(params[:id])
   end
 
@@ -72,6 +74,7 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.xml
   def destroy
+    redirect_to(employees_url, :notice => 'არ გაქვთ თანამშრომლის წაშლის უფლება!') and return if !get_current_user.can_edit_employees
     @employee = Employee.find(params[:id])
     @employee.destroy
 

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  # პარ1ოლის მიღება
+  # პაროლის მიღება
   def password
     @password
   end
@@ -35,6 +35,20 @@ class User < ActiveRecord::Base
     first_name + ' ' + last_name
   end
 
+  # უფლებების მართვა
+  
+  def can_edit_departmens
+    self.canc_empl or self.admin
+  end
+
+  def can_edit_employees
+    self.canc_empl or self.admin
+  end
+  
+  def can_edit_indices
+    self.canc_empl or self.admin
+  end
+    
   private
 
   # პაროლის შემოწმება

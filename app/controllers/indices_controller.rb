@@ -24,6 +24,7 @@ class IndicesController < ApplicationController
   # GET /indices/new
   # GET /indices/new.xml
   def new
+    redirect_to(indices_url, :notice => 'არ გაქვთ ახალი ინდექსის დამატების უფლება!') and return if !get_current_user.can_edit_indices
     @index = Index.new
 
     respond_to do |format|
@@ -34,6 +35,7 @@ class IndicesController < ApplicationController
 
   # GET /indices/1/edit
   def edit
+    redirect_to(indices_url, :notice => 'არ გაქვთ ინდექსის შეცვლის უფლება!') and return if !get_current_user.can_edit_indices
     @index = Index.find(params[:id])
   end
 
@@ -72,6 +74,7 @@ class IndicesController < ApplicationController
   # DELETE /indices/1
   # DELETE /indices/1.xml
   def destroy
+    redirect_to(indices_url, :notice => 'არ გაქვთ ინდექსის წაშლის უფლება!') and return if !get_current_user.can_edit_indices
     @index = Index.find(params[:id])
     @index.destroy
 

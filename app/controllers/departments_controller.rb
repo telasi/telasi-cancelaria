@@ -18,7 +18,7 @@ class DepartmentsController < ApplicationController
   end
 
   def new
-    redirect_to(departments_url, :notice => 'არ გაქვთ ახალი დირექციის დამატების უფლება!') and return if !get_current_user.canc_empl
+    redirect_to(departments_url, :notice => 'არ გაქვთ ახალი დირექციის დამატების უფლება!') and return if !get_current_user.can_edit_departmens
     @department = Department.new
 
     respond_to do |format|
@@ -28,7 +28,7 @@ class DepartmentsController < ApplicationController
   end
 
   def edit
-    redirect_to(departments_url, :notice => 'არ გაქვთ დირექციის შეცვლის უფლება!') and return if !get_current_user.canc_empl
+    redirect_to(departments_url, :notice => 'არ გაქვთ დირექციის შეცვლის უფლება!') and return if !get_current_user.can_edit_departmens
     @department = Department.find(params[:id])
   end
 
@@ -67,7 +67,7 @@ class DepartmentsController < ApplicationController
   # DELETE /departments/1
   # DELETE /departments/1.xml
   def destroy
-    redirect_to(departments_url, :notice => 'არ გაქვთ დირექციის წაშლის უფლება!') and return if !get_current_user.canc_empl
+    redirect_to(departments_url, :notice => 'არ გაქვთ დირექციის წაშლის უფლება!') and return if !get_current_user.can_edit_departmens
     @department = Department.find(params[:id])
     @department.destroy
 
