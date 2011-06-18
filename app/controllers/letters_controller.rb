@@ -5,7 +5,6 @@ class LettersController < ApplicationController
     @selected_index = params[:index_id] ? params[:index_id].to_i : 0
     @letters = search_support(params)
     @indecies = Index.all(:order => 'prefix')
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @letters }

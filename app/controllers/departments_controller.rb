@@ -1,6 +1,4 @@
 class DepartmentsController < ApplicationController
-  # GET /departments
-  # GET /departments.xml
   def index
     @departments = Department.all
 
@@ -10,8 +8,6 @@ class DepartmentsController < ApplicationController
     end
   end
 
-  # GET /departments/1
-  # GET /departments/1.xml
   def show
     @department = Department.find(params[:id])
 
@@ -21,9 +17,8 @@ class DepartmentsController < ApplicationController
     end
   end
 
-  # GET /departments/new
-  # GET /departments/new.xml
   def new
+    redirect_to(departments_url, :notice => 'არ გაქვთ ახალი დირექციის დამატების უფლება!') and return if !get_current_user.canc_empl
     @department = Department.new
 
     respond_to do |format|
@@ -32,8 +27,8 @@ class DepartmentsController < ApplicationController
     end
   end
 
-  # GET /departments/1/edit
   def edit
+    redirect_to(departments_url, :notice => 'არ გაქვთ დირექციის შეცვლის უფლება!') and return if !get_current_user.canc_empl
     @department = Department.find(params[:id])
   end
 
@@ -72,6 +67,7 @@ class DepartmentsController < ApplicationController
   # DELETE /departments/1
   # DELETE /departments/1.xml
   def destroy
+    redirect_to(departments_url, :notice => 'არ გაქვთ დირექციის წაშლის უფლება!') and return if !get_current_user.canc_empl
     @department = Department.find(params[:id])
     @department.destroy
 
