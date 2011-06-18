@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
     self.canc_empl or self.admin
   end
   
+  def can_edit_users
+    self.admin
+  end
+  
   private
 
   # პაროლის შემოწმება
