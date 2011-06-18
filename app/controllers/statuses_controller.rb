@@ -24,6 +24,7 @@ class StatusesController < ApplicationController
   # GET /statuses/new
   # GET /statuses/new.xml
   def new
+    redirect_to(statuses_url, :notice => 'არ გაქვთ ახალი სტატუსის დამატების უფლება!') and return if !get_current_user.can_edit_statuses
     @status = Status.new
 
     respond_to do |format|
@@ -34,6 +35,7 @@ class StatusesController < ApplicationController
 
   # GET /statuses/1/edit
   def edit
+    redirect_to(statuses_url, :notice => 'არ გაქვთ სტატუსის შეცვლის უფლება!') and return if !get_current_user.can_edit_statuses
     @status = Status.find(params[:id])
   end
 
@@ -72,6 +74,7 @@ class StatusesController < ApplicationController
   # DELETE /statuses/1
   # DELETE /statuses/1.xml
   def destroy
+    redirect_to(statuses_url, :notice => 'არ გაქვთ სტატუსის წაშლის უფლება!') and return if !get_current_user.can_edit_statuses
     @status = Status.find(params[:id])
     @status.destroy
 
