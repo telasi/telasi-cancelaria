@@ -21,6 +21,7 @@ class LettersController < ApplicationController
   end
 
   def new
+    redirect_to(letters_url(:index_id => params[:index_id]), :notice => 'არ გაქვთ ახალი განცხადების დამატების უფლება!') and return if !get_current_user.can_edit_letters
     @letter = Letter.new
     @letter.received = Time.new
     @selected_index = params[:index_id] ? params[:index_id].to_i : 0
@@ -34,6 +35,7 @@ class LettersController < ApplicationController
 
   def edit
     @letter = Letter.find(params[:id])
+    redirect_to(@letter, :notice => 'არ გაქვთ განცხადების შეცვლის უფლება!') and return if !get_current_user.can_edit_letters
   end
 
   def create
@@ -75,6 +77,7 @@ class LettersController < ApplicationController
   end
 
   def destroy
+    redirect_to(letters_url, :notice => 'არ გაქვთ განცხადების წაშლის უფლება!') and return if !get_current_user.can_edit_letters
     @letter = Letter.find(params[:id])
     @letter.destroy
 
@@ -86,6 +89,7 @@ class LettersController < ApplicationController
 
   def add_department
     @letter = Letter.find(params[:letter_id])
+    redirect_to(@letter, :notice => 'არ გაქვთ დირექციის დამატების უფლება!') and return if !get_current_user.can_edit_letters
     @letter_department = LetterDepartment.new
     if request.post?
       dep = Department.find(params[:letter_department][:department_id])
@@ -101,6 +105,7 @@ class LettersController < ApplicationController
 
   def remove_department
     l = Letter.find(params[:letter_id])
+    redirect_to(l, :notice => 'არ გაქვთ დირექციის წაშლის უფლება!') and return if !get_current_user.can_edit_letters
     d = Department.find(params[:department_id])
     ld = LetterDepartment.where(:department_id => d.id, :letter_id => l.id).first
     ld.destroy
@@ -112,22 +117,30 @@ class LettersController < ApplicationController
     @letter_employee = LetterEmployee.new
     if request.post?
       emp = Employee.find(params[:letter_employee][:employee_id])
-      eds = LetterEmployee.where(:letter_id => @letter.id, :employee_id => emp.id)
-      if eds.empty?
-        @letter_employee.employee = emp
-        @letter_employee.letter = @letter
-        @letter_employee.save
+      if !get_current_user.can_edit_letters and emp.department.id != get_current_user.department.id
+        redirect_to @letter, :notice => 'თქვენ არ გაქვთ უფლება დაამატოთ სხვა დეპარტამენტის თანამშრომელი.' and return
+      else
+        eds = LetterEmployee.where(:letter_id => @letter.id, :employee_id => emp.id)
+        if eds.empty?
+          @letter_employee.employee = emp
+          @letter_employee.letter = @letter
+          @letter_employee.save
+        end
+        redirect_to @letter
       end
-      redirect_to @letter
     end
   end
 
   def remove_employee
     l = Letter.find(params[:letter_id])
     e = Employee.find(params[:employee_id])
-    le = LetterEmployee.where(:letter_id => l.id, :employee_id => e.id).first
-    le.destroy
-    redirect_to l
+    if !get_current_user.can_edit_letters and e.department.id != get_current_user.department.id
+      redirect_to l, :notice => 'თქვენ არ გაქვთ უფლება წაშალოთ სხვა დეპარტამენტის თანამშრომელი.' and return
+    else
+      le = LetterEmployee.where(:letter_id => l.id, :employee_id => e.id).first
+      le.destroy
+      redirect_to l
+    end
   end
 
   def search

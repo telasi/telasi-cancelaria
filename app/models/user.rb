@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   def can_edit_employees
     self.canc_empl or self.admin
   end
-  
+
   def can_edit_indices
     self.canc_empl or self.admin
   end
@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
     self.canc_empl or self.admin
   end
 
+  def can_edit_letters
+    self.canc_empl or self.admin
+  end
+  
   private
 
   # პაროლის შემოწმება
