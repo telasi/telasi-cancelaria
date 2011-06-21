@@ -63,7 +63,9 @@ class StatusesController < ApplicationController
 
   def destroy
     redirect_to(statuses_url, :notice => 'არ გაქვთ სტატუსის წაშლის უფლება!') and return if !get_current_user.can_edit_statuses
+
     @status = Status.find(params[:id])
+    redirect_to(@status, :notice => 'ვერ წავშლი: ეს სტატუსი გამოყენებაშია!') and return if Letter.where(:status_id => @status.id).count > 0
     @status.destroy
 
     respond_to do |format|

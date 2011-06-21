@@ -63,7 +63,10 @@ class IndicesController < ApplicationController
 
   def destroy
     redirect_to(indices_url, :notice => 'არ გაქვთ ინდექსის წაშლის უფლება!') and return if !get_current_user.can_edit_indices
+
     @index = Index.find(params[:id])
+    redirect_to(@index, :notice => 'ვერ წავშლი: ეს ინდექსი გამოყენებაშია!') and return if Letter.where(:index_id => @index.id).count > 0    
+
     @index.destroy
 
     respond_to do |format|
