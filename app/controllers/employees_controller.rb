@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   def index
-    @employees = Employee.all
+    @employees = Employee.all(:order => 'order_by')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -63,6 +63,7 @@ class EmployeesController < ApplicationController
   def destroy
     redirect_to(employees_url, :notice => 'არ გაქვთ თანამშრომლის წაშლის უფლება!') and return if !get_current_user.can_edit_employees
     @employee = Employee.find(params[:id])
+    redirect_to(@employee, :notice => 'ვერ წავშლი: ეს თანამშრომელი გამოყენებაშია!') and return if LetterEmployee.where(:employee_id => @employee.id).count > 0
     @employee.destroy
 
     respond_to do |format|

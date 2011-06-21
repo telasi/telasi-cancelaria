@@ -63,6 +63,8 @@ class DepartmentsController < ApplicationController
   def destroy
     redirect_to(departments_url, :notice => 'არ გაქვთ დირექციის წაშლის უფლება!') and return if !get_current_user.can_edit_departmens
     @department = Department.find(params[:id])
+    redirect_to(@department, :notice => 'ვერ წავშლი: ეს დირექცია გამოყენებაშია!') and return if Employee.where(:department_id => @department.id).count > 0
+    redirect_to(@department, :notice => 'ვერ წავშლი: ეს დირექცია გამოყენებაშია!') and return if LetterDepartment.where(:department_id => @department.id).count > 0 
     @department.destroy
 
     respond_to do |format|
