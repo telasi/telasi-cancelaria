@@ -117,30 +117,22 @@ class LettersController < ApplicationController
     @letter_employee = LetterEmployee.new
     if request.post?
       emp = Employee.find(params[:letter_employee][:employee_id])
-      if !get_current_user.can_edit_letters and emp.department.id != get_current_user.department.id
-        redirect_to @letter, :notice => 'თქვენ არ გაქვთ უფლება დაამატოთ სხვა დეპარტამენტის თანამშრომელი.' and return
-      else
-        eds = LetterEmployee.where(:letter_id => @letter.id, :employee_id => emp.id)
-        if eds.empty?
-          @letter_employee.employee = emp
-          @letter_employee.letter = @letter
-          @letter_employee.save
-        end
-        redirect_to @letter
+      eds = LetterEmployee.where(:letter_id => @letter.id, :employee_id => emp.id)
+      if eds.empty?
+        @letter_employee.employee = emp
+        @letter_employee.letter = @letter
+        @letter_employee.save
       end
+      redirect_to @letter
     end
   end
 
   def remove_employee
     l = Letter.find(params[:letter_id])
     e = Employee.find(params[:employee_id])
-    if !get_current_user.can_edit_letters and e.department.id != get_current_user.department.id
-      redirect_to l, :notice => 'თქვენ არ გაქვთ უფლება წაშალოთ სხვა დეპარტამენტის თანამშრომელი.' and return
-    else
-      le = LetterEmployee.where(:letter_id => l.id, :employee_id => e.id).first
-      le.destroy
-      redirect_to l
-    end
+    le = LetterEmployee.where(:letter_id => l.id, :employee_id => e.id).first
+    le.destroy
+    redirect_to l
   end
 
   def search
@@ -210,9 +202,25 @@ class LettersController < ApplicationController
       where_params.push(user.department_id)
     end
 
+    if conditions[:department_id] and not conditions[:department_id].empty?
+      where.push('letter_departments.department_id=?')
+      where_params.push(conditions[:department_id])
+      filter_deps = true
+    end
+
+    if conditions[:employee_id] and not conditions[:employee_id].empty?
+      where.push('letter_employees.employee_id=?')
+      where_params.push(conditions[:employee_id])
+      filter_empls = true
+    end
+
     where_cond = where.join(' and ')
     rails_conditions = [where_cond] + where_params
-    @letters = (filter_deps ? Letter.joins(:letter_departments) : Letter).paginate(
+    from = []
+    from.push(:letter_departments) if filter_deps
+    from.push(:letter_employees)  if filter_empls
+    
+    @letters = Letter.joins(from).paginate(
       :page => conditions[:page],
       :per_page => @@letter_per_page,
       :conditions => rails_conditions,

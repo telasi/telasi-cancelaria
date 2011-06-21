@@ -29,6 +29,11 @@
 <%= label_tag 'ტელეფონი' %>
 <%= text_field_tag(:phone, params[:phone], :style=>'width:150px;') %>
 <br/>
+<%= label_tag 'დირექცია' %>
+<%= select_tag(:department_id, options_for_select(Department.all(:order => 'order_by').collect{|x| [x.name, x.id]}, params['department_id']), :include_blank => '(ყველა)') %>
+<%= label_tag 'თანამშრომელი' %>
+<%= select_tag(:employee_id, options_for_select(Employee.all(:order => 'order_by').collect{|x| [x.name, x.id]}, params['employee_id']), :include_blank => '(ყველა)') %>
+<br/>
 <%= submit_tag 'ძებნა' %>
 <% end -%>
 </div>
