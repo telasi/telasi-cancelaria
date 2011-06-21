@@ -19,4 +19,18 @@ class SiteController < ApplicationController
     redirect_to home_url
   end
 
+  def change_password
+    if request.post?
+      user = get_current_user
+      user.password = request[:password]
+      user.password_confirmation = request[:password_confirmation]
+      if user.save
+        flash[:notice] = 'პაროლი შეცვლილია'
+        redirect_to :action => 'index'
+      else
+        flash[:notice] = user.errors.full_messages
+      end
+    end
+  end
+  
 end

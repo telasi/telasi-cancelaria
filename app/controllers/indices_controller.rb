@@ -1,6 +1,5 @@
 class IndicesController < ApplicationController
-  # GET /indices
-  # GET /indices.xml
+
   def index
     @indices = Index.all(:order => :prefix)
 
@@ -10,8 +9,6 @@ class IndicesController < ApplicationController
     end
   end
 
-  # GET /indices/1
-  # GET /indices/1.xml
   def show
     @index = Index.find(params[:id])
 
@@ -21,8 +18,6 @@ class IndicesController < ApplicationController
     end
   end
 
-  # GET /indices/new
-  # GET /indices/new.xml
   def new
     redirect_to(indices_url, :notice => 'არ გაქვთ ახალი ინდექსის დამატების უფლება!') and return if !get_current_user.can_edit_indices
     @index = Index.new
@@ -33,14 +28,11 @@ class IndicesController < ApplicationController
     end
   end
 
-  # GET /indices/1/edit
   def edit
     redirect_to(indices_url, :notice => 'არ გაქვთ ინდექსის შეცვლის უფლება!') and return if !get_current_user.can_edit_indices
     @index = Index.find(params[:id])
   end
 
-  # POST /indices
-  # POST /indices.xml
   def create
     @index = Index.new(params[:index])
 
@@ -55,8 +47,6 @@ class IndicesController < ApplicationController
     end
   end
 
-  # PUT /indices/1
-  # PUT /indices/1.xml
   def update
     @index = Index.find(params[:id])
 
@@ -71,8 +61,6 @@ class IndicesController < ApplicationController
     end
   end
 
-  # DELETE /indices/1
-  # DELETE /indices/1.xml
   def destroy
     redirect_to(indices_url, :notice => 'არ გაქვთ ინდექსის წაშლის უფლება!') and return if !get_current_user.can_edit_indices
     @index = Index.find(params[:id])

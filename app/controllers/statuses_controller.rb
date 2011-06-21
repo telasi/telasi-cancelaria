@@ -1,6 +1,5 @@
 class StatusesController < ApplicationController
-  # GET /statuses
-  # GET /statuses.xml
+
   def index
     @statuses = Status.all
 
@@ -10,8 +9,6 @@ class StatusesController < ApplicationController
     end
   end
 
-  # GET /statuses/1
-  # GET /statuses/1.xml
   def show
     @status = Status.find(params[:id])
 
@@ -21,8 +18,6 @@ class StatusesController < ApplicationController
     end
   end
 
-  # GET /statuses/new
-  # GET /statuses/new.xml
   def new
     redirect_to(statuses_url, :notice => 'არ გაქვთ ახალი სტატუსის დამატების უფლება!') and return if !get_current_user.can_edit_statuses
     @status = Status.new
@@ -33,14 +28,11 @@ class StatusesController < ApplicationController
     end
   end
 
-  # GET /statuses/1/edit
   def edit
     redirect_to(statuses_url, :notice => 'არ გაქვთ სტატუსის შეცვლის უფლება!') and return if !get_current_user.can_edit_statuses
     @status = Status.find(params[:id])
   end
 
-  # POST /statuses
-  # POST /statuses.xml
   def create
     @status = Status.new(params[:status])
 
@@ -55,8 +47,6 @@ class StatusesController < ApplicationController
     end
   end
 
-  # PUT /statuses/1
-  # PUT /statuses/1.xml
   def update
     @status = Status.find(params[:id])
 
@@ -71,8 +61,6 @@ class StatusesController < ApplicationController
     end
   end
 
-  # DELETE /statuses/1
-  # DELETE /statuses/1.xml
   def destroy
     redirect_to(statuses_url, :notice => 'არ გაქვთ სტატუსის წაშლის უფლება!') and return if !get_current_user.can_edit_statuses
     @status = Status.find(params[:id])

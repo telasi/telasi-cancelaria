@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.xml
+
   def index
     @users = User.all
 
@@ -10,8 +9,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.xml
   def show
     @user = User.find(params[:id])
 
@@ -21,8 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
-  # GET /users/new.xml
   def new
     redirect_to(users_url, :notice => 'არ გაქვთ ახალი მომხმარებლის დამატების უფლება!') and return if !get_current_user.can_edit_users
     @user = User.new
@@ -33,14 +28,11 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
   def edit
     redirect_to(users_url, :notice => 'არ გაქვთ მომხმარებლის შეცვლის უფლება!') and return if !get_current_user.can_edit_users
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.xml
   def create
     @user = User.new(params[:user])
 
@@ -55,8 +47,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
 
@@ -71,8 +61,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.xml
   def destroy
     redirect_to(users_url, :notice => 'არ გაქვთ მომხმარებლის წაშლის უფლება!') and return if !get_current_user.can_edit_users
     @user = User.find(params[:id])
@@ -83,4 +71,5 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end

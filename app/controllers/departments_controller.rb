@@ -32,8 +32,6 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])
   end
 
-  # POST /departments
-  # POST /departments.xml
   def create
     @department = Department.new(params[:department])
 
@@ -48,8 +46,6 @@ class DepartmentsController < ApplicationController
     end
   end
 
-  # PUT /departments/1
-  # PUT /departments/1.xml
   def update
     @department = Department.find(params[:id])
 
@@ -64,8 +60,6 @@ class DepartmentsController < ApplicationController
     end
   end
 
-  # DELETE /departments/1
-  # DELETE /departments/1.xml
   def destroy
     redirect_to(departments_url, :notice => 'არ გაქვთ დირექციის წაშლის უფლება!') and return if !get_current_user.can_edit_departmens
     @department = Department.find(params[:id])
@@ -76,4 +70,5 @@ class DepartmentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end

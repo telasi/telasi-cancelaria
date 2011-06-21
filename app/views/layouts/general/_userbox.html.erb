@@ -1,6 +1,7 @@
 <div id="userbox">
 <% if controller.get_current_user %>
 <b><%= controller.get_current_user.full_name %></b> |
+<%= link_to 'პაროლის შეცვლა', change_password_url %> |
 <%= link_to 'გასვლა', logout_url %>
 <% end %>
 </div>
