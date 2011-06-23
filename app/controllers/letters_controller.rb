@@ -67,6 +67,10 @@ class LettersController < ApplicationController
 
     respond_to do |format|
       if @letter.update_attributes(params[:letter])
+        if @letter.status.update_sent_date and @letter.sent.nil?
+          @letter.sent = Time.new
+          @letter.save
+        end
         format.html { redirect_to(@letter, :notice => 'განცხადება განახლებულია.') }
         format.xml  { head :ok }
       else
