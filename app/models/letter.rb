@@ -1,12 +1,12 @@
 class Letter < ActiveRecord::Base
   belongs_to :index
+  validate :derive_year
   belongs_to :status
   has_many :letter_departments, :dependent => :destroy
   has_many :letter_employees, :dependent => :destroy
   has_many :departments, :through => :letter_departments
   has_many :employees, :through => :letter_employees
   validates_presence_of :number, :description, :name
-  
   def self.years
     [2010, 2011]
   end
@@ -27,4 +27,7 @@ class Letter < ActiveRecord::Base
     self.sent = dt
   end
 
+  def derive_year
+    self.year = self.received.year
+  end
 end
