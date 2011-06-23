@@ -1,8 +1,14 @@
 <div class="letter_indices">
 <h2>ინდექსები</h2>
-<div class="letter_index"><%= link_to 'ყველა', letters_url(:index_id=>0), :class => (@selected_index == 0 ? 'selected':'common') %></div>
+<div class="letter_index"><%= link_to 'ყველა', letters_url(:index_id=>0, :year => @selected_year), :class => (@selected_index == 0 ? 'selected':'common') %></div>
 <% @indecies.each do |idx| -%>
-<div class="letter_index"><%= link_to idx.prefix, letters_url(:index_id=>idx.id), :class => (@selected_index == idx.id ? 'selected':'common') %></div>
+<div class="letter_index"><%= link_to idx.prefix, letters_url(:index_id=>idx.id, :year => @selected_year), :class => (@selected_index == idx.id ? 'selected':'common') %></div>
+<% end -%>
+<h2>წლები</h2>
+<% Letter.years.each do |y| -%>
+<div class="letter_index">
+<%= link_to(y, letters_url(:index_id=>@selected_index, :year => y), :class => (@selected_year == y ? 'selected':'common')) %>
+</div>
 <% end -%>
 </div>
 
@@ -12,5 +18,4 @@
 </div>
 <%= render :partial => 'letters/letter' %>
 </div>
-
 <div style="clear:both"></div>

@@ -3,6 +3,8 @@ class LettersController < ApplicationController
 
   def index
     @selected_index = params[:index_id] ? params[:index_id].to_i : 0
+    @selected_year = params[:year] ? params[:year].to_i : Letter.years.last
+    params[:year] = @selected_year.to_s
     @letters = search_support(params)
     @indecies = Index.all(:order => 'prefix')
     respond_to do |format|
@@ -197,6 +199,10 @@ class LettersController < ApplicationController
     if conditions[:phone] and not conditions[:phone].empty?
       where.push('letters.phone LIKE ?')
       where_params.push("%#{conditions[:phone]}%")
+    end
+    if conditions[:year] and not conditions[:year].empty?
+      where.push('letters.year = ?')
+      where_params.push(conditions[:year])
     end
 
     user = get_current_user

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616081751) do
+ActiveRecord::Schema.define(:version => 20110623121848) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -82,10 +82,12 @@ ActiveRecord::Schema.define(:version => 20110616081751) do
     t.string   "custnumb"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "year"
   end
 
   add_index "letters", ["index_id"], :name => "index_letters_on_index_id"
   add_index "letters", ["status_id"], :name => "index_letters_on_status_id"
+  add_index "letters", ["year"], :name => "index_letters_on_year"
 
   create_table "statuses", :force => true do |t|
     t.string   "name"

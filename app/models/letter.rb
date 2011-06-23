@@ -6,6 +6,10 @@ class Letter < ActiveRecord::Base
   has_many :departments, :through => :letter_departments
   has_many :employees, :through => :letter_employees
   validates_presence_of :number, :description, :name
+  
+  def self.years
+    [2010, 2011]
+  end
 
   def received2
     self.received.strftime("%d-%b-%Y") if self.received
