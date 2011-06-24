@@ -1,4 +1,5 @@
 <% if @letters and @letters.any? -%>
+<%= will_paginate @letters, :previous_label => '&larr;', :next_label => '&rarr;' %>
 <table>
 <tr>
 <th>&nbsp;</th>
