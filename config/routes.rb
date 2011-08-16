@@ -1,4 +1,5 @@
 Canc::Application.routes.draw do
+
   resources :users
   resources :letters
   resources :employees
@@ -17,6 +18,8 @@ Canc::Application.routes.draw do
   match '/add_employee', :controller => :letters, :action => :add_employee
   match '/remove_employee', :controller => :letters, :action => :remove_employee
   match '/search', :controller => :letters, :action => :search
+  
+  match '/not_completed_letters', :controller => :reports, :action => :not_completed_letters
 
   root :to => "site#index"
 end

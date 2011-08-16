@@ -1,0 +1,92 @@
+<% unless params['print'] == 'ok' -%>
+
+<!-- Screen format -->
+
+<h1>შეუსრულებელია დავალებები</h1>
+
+<% form_tag (not_completed_letters_url, :method => :get) do -%>
+<%= label_tag 'ინტერვალი' %>
+<%= text_field_tag(:date1, params['date1'], :class=>'datepicker', :style=>'width:100px;') %> -
+<%= text_field_tag(:date2, params['date2'], :class=>'datepicker', :style=>'width:100px;') %>
+<%= submit_tag 'გენერაცია' %>
+<% end -%>
+
+<% if @letters -%>
+<div class="actions">
+<%= link_to 'დაბეჭდვა', not_completed_letters_url(:date1 => params[:date1], :date2 => params[:date2], :print => 'ok') %>
+</div>
+<table>
+<tr>
+<th width="100">დეპარტამენტი<br/>Департамент</th>
+<th width="400">რეგისტრაციის ნომერი<br/>Регистрационный номер</th>
+<th width="100">რაოდენობა<br/>Количество</th>
+</tr>
+<% @letters.keys.each do |e| -%>
+<tr>
+<td><%= link_to e.name, e %></td>
+<td>
+<% @letters[e].each do |l| -%>
+<%= l.received.strftime('%d.%m.%Y') %> №<%= link_to l.number, l %>;
+<% end -%>
+</td>
+<td><%= @letters[e].size %></td>
+</tr>
+<% end -%>
+</table>
+<% end -%>
+
+<% else -%>
+
+<!-- Print format -->
+
+<h1 align="center">სამსახურეობრივი წერილი<br/>Служебная записка</h1>
+<%
+first_dept = @departments[0]
+other_deps = ""
+@departments[1..-1].each do |d|
+	other_deps += "#{d.salutation}<br/>#{d.salutation_ru}<br/><br/>"
+end
+%>
+<table width="100%">
+<tr>
+<td width="15%" valign="top">ვის:<br/>Кому:</td>
+<td valign="top"><%= first_dept.salutation %><br/><%= first_dept.salutation_ru %><br/><br/></td>
+</tr>
+<tr>
+<td valign="top">ასლი:<br/>Копия:</td>
+<td valign="top"><%= other_deps.html_safe %></td>
+</tr>
+<tr>
+<td valign="top">ვისგან:<br/>От кого:</td>
+<td valign="top">კანცელარიის უფროსის მ. ხიმშიაშვილისაგან<br/>Заведующей канцелярией М. Химшиашвили<br/><br/></td>
+</tr>
+<tr>
+<td valign="top">თარიღი:<br/>Дата:</td>
+<td valign="top"><%= Time.now.strftime('%d.%m.%Y') %><br/><br/></td>
+</tr>
+</table>
+<hr style="border-top: 1pt solid black;"/>
+<p>შეუსრულებელი წერილების რაოდენობა <%= @d1.strftime('%d.%m.%Y') %>-დან <%= @d2.strftime('%d.%m.%Y') %>-მდე.</p>
+<p>Количество невыполненных писем с <%= @d1.strftime('%d.%m.%Y') %> по <%= @d2.strftime('%d.%m.%Y') %>.</p>
+
+<table width="100%" class="border break">
+<tr>
+<th width="20%">დეპარტამენტი<br/>Департамент</th>
+<th width="70%">რეგისტრაციის ნომერი<br/>Регистрационный номер</th>
+<th width="10%">რაოდ<br/>Кол-во</th>
+</tr>
+<% @letters.keys.each do |e| -%>
+<tr>
+<td style="vertical-align: top;">
+<%= e.name %><br/><%= e.name_ru %>
+</td>
+<td style="vertical-align: top;">
+<% @letters[e].each do |l| -%>
+<%= l.received.strftime('%d.%m.%Y') %> №<%= l.number %>;
+<% end -%>
+</td>
+<td style="vertical-align: top;"><%= @letters[e].size %></td>
+</tr>
+<% end -%>
+</table>
+<% end -%>

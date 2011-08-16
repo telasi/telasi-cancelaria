@@ -49,6 +49,10 @@ module ApplicationHelper
      'ძებნა'
     when 'users'
       'მომხმარებლები'
+    when 'reports'
+      'რეპორტები'
+    when 'not_completed_letters'
+      'შეუსრულებელი დავალებები'
     else
       name
     end
@@ -81,15 +85,22 @@ module ApplicationHelper
     elsif cname == 'users'
       pname = 'admin'
       sname = 'users'
+    elsif cname == 'reports'
+      pname = 'reports'
+      if aname == 'not_completed_letters'
+        sname = 'not_completed_letters'
+      end
     end
     [pname, sname]
   end
 
   def all_pages
-    pages = [{:name => 'home', :url => home_url}, {:name => 'letters', :url => letters_url}, {:name => 'admin', :url => indices_url}]
+    pages = [{:name => 'home', :url => home_url}, {:name => 'letters', :url => letters_url},
+      {:name => 'reports', :url => not_completed_letters_url}, {:name => 'admin', :url => indices_url}]
     sub_pages = {
       'home' => [],
       'letters' => [{:name => 'letter_list', :url => letters_url}, {:name => 'search', :url => search_url}],
+      'reports' => [{:name => 'not_completed_letters', :url => not_completed_letters_url}],
       'admin' => [{:name => 'indices', :url => indices_url}, {:name => 'statuses', :url => statuses_url}, {:name => 'departments', :url => departments_url }, {:name => 'employees', :url => employees_url }, {:name => 'users', :url => users_url }]
     }
     [pages, sub_pages]
