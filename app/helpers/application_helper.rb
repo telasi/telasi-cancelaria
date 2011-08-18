@@ -52,7 +52,9 @@ module ApplicationHelper
     when 'reports'
       'რეპორტები'
     when 'not_completed_letters'
-      'შეუსრულებელი დავალებები'
+      'შეუსრულებელი'
+    when 'completed_letters_by_index'
+      'შესრულებული ინდექსებით'
     else
       name
     end
@@ -89,6 +91,8 @@ module ApplicationHelper
       pname = 'reports'
       if aname == 'not_completed_letters'
         sname = 'not_completed_letters'
+      elsif aname == 'completed_letters_by_index'
+        sname = 'completed_letters_by_index'
       end
     end
     [pname, sname]
@@ -100,7 +104,7 @@ module ApplicationHelper
     sub_pages = {
       'home' => [],
       'letters' => [{:name => 'letter_list', :url => letters_url}, {:name => 'search', :url => search_url}],
-      'reports' => [{:name => 'not_completed_letters', :url => not_completed_letters_url}],
+      'reports' => [{:name => 'not_completed_letters', :url => not_completed_letters_url}, {:name => 'completed_letters_by_index', :url => completed_letters_by_index_url}],
       'admin' => [{:name => 'indices', :url => indices_url}, {:name => 'statuses', :url => statuses_url}, {:name => 'departments', :url => departments_url }, {:name => 'employees', :url => employees_url }, {:name => 'users', :url => users_url }]
     }
     [pages, sub_pages]

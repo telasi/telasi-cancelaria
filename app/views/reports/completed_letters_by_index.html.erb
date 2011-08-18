@@ -1,0 +1,69 @@
+<% unless params['print'] == 'ok' -%>
+
+<!-- Screen format -->
+<h1>შესრულებული წერილები ინდექსების მიხედვით</h1>
+
+<% form_tag (completed_letters_by_index_url, :method => :get) do -%>
+<%= label_tag 'ინტერვალი' %>
+<%= text_field_tag(:date1, params['date1'], :class=>'datepicker', :style=>'width:100px;') %> -
+<%= text_field_tag(:date2, params['date2'], :class=>'datepicker', :style=>'width:100px;') %>
+<%= submit_tag 'გენერაცია' %>
+<% end -%>
+
+<% if @data.any? -%>
+<div class="actions">
+<%= link_to 'დაბეჭდვა', completed_letters_by_index_url(:date1 => params[:date1], :date2 => params[:date2], :print => 'ok') %>
+</div>
+<table width="100%">
+<tr>
+<th width="50">ინდექსი</th>
+<th>აღწერილობა</th>
+<th width="50">შემოსული</th>
+<th width="50">შესრულება</th>
+</tr>
+<% @data.each do |d| -%>
+<tr>
+<td><%= link_to d[:index].prefix, d[:index] %></td>
+<td><%= d[:index].description %></td>
+<td><%= d[:count] %></td>
+<td><%= d[:completed] %></td>
+</tr>
+<% end -%>
+</table>
+<% end -%>
+
+<% else -%>
+<!-- Print format -->
+
+<h1 align="center">სამსახურეობრივი წერილი</h1>
+<table>
+<tr><td valign="top" width="100"><strong>ვის</strong></td><td valign="top">კომერციული განყოფილების ხელმძღვანელს გიორგი ლომიძეს</td></tr>
+<tr><td valign="top"><strong>ვისგან</strong></td><td valign="top">კანცელარიის ხელმძღვანელი მანანა ხიმშიაშვილისგან</td></tr>
+<tr><td valign="top"><strong>საკითხი</strong></td><td valign="top">შემოსულ წერილებზე ინფორმაციის მიწოდება</td></tr>
+<tr><td valign="top"><strong>თარიღი</strong></td><td valign="top"><%= Time.now.strftime('%d.%m.%Y') %></td></tr>
+</table>
+
+<p>
+თქვენი მოთხოვნის საფუძველზე გაწვდით ინფორმაციას
+<strong><%= @d1.strftime('%d.%m.%Y') %></strong>-დან <strong><%= @d2.strftime('%d.%m.%Y') %></strong>-მდე პერიოდში 
+შემოსული წერილების რაოდენობას კლასიფიკაციის მიხედვით.
+</p>
+
+<table width="100%" class="border">
+<tr>
+<th width="50">ინდექსი</th>
+<th>აღწერილობა</th>
+<th width="50">შემოსული</th>
+<th width="50">შესრულება</th>
+</tr>
+<% @data.each do |d| -%>
+<tr>
+<td><%= d[:index].prefix %></td>
+<td><%= d[:index].description %></td>
+<td><%= d[:count] %></td>
+<td><%= d[:completed] %></td>
+</tr>
+<% end -%>
+</table>
+
+<% end -%>

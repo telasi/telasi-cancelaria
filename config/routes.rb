@@ -20,6 +20,7 @@ Canc::Application.routes.draw do
   match '/search', :controller => :letters, :action => :search
   
   match '/not_completed_letters', :controller => :reports, :action => :not_completed_letters
+  match '/completed_letters_by_index', :controller => :reports, :action => :completed_letters_by_index
 
   root :to => "site#index"
 end
