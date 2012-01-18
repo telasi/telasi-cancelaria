@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Letter < ActiveRecord::Base
   belongs_to :index
   validate :derive_year

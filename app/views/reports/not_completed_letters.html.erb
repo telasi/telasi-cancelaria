@@ -4,7 +4,7 @@
 
 <h1>შეუსრულებელია წერილები</h1>
 
-<% form_tag (not_completed_letters_url, :method => :get) do -%>
+<%= form_tag(not_completed_letters_url, :method => :get) do -%>
 <%= label_tag 'ინტერვალი' %>
 <%= text_field_tag(:date1, params['date1'], :class=>'datepicker', :style=>'width:100px;') %> -
 <%= text_field_tag(:date2, params['date2'], :class=>'datepicker', :style=>'width:100px;') %>

@@ -3,7 +3,7 @@
 <!-- Screen format -->
 <h1>შესრულებული წერილები ინდექსების მიხედვით</h1>
 
-<% form_tag (completed_letters_by_index_url, :method => :get) do -%>
+<%= form_tag(completed_letters_by_index_url, :method => :get) do -%>
 <%= label_tag 'ინტერვალი' %>
 <%= text_field_tag(:date1, params['date1'], :class=>'datepicker', :style=>'width:100px;') %> -
 <%= text_field_tag(:date2, params['date2'], :class=>'datepicker', :style=>'width:100px;') %>

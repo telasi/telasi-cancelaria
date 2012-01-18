@@ -1,7 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'jcode'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -36,6 +35,9 @@ module Canc
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+
+    # do not enable assets: it is an old kind of RAILS app
+    config.assets.enabled = false
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]

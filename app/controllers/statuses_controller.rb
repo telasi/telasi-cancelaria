@@ -1,3 +1,4 @@
+# encoding: utf-8
 class StatusesController < ApplicationController
 
   def index

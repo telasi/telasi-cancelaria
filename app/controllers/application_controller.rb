@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ApplicationController < ActionController::Base
   before_filter :check_user, :except => [:login, :style]
   protect_from_forgery

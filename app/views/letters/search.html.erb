@@ -1,5 +1,5 @@
 <div class="letter_search_fields">
-<% form_tag (search_url, :method => :get) do -%>
+<%= form_tag(search_url, :method => :get) do -%>
 <%= label_tag 'ინდექსი' %>
 <%= select_tag(:index_id, options_for_select(Index.all(:order => 'prefix').collect{|x| [x.prefix, x.id]}, params['index_id']), :include_blank => '(ყველა)') %>
 <%= label_tag 'სტატუსი' %>

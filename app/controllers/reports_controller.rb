@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ReportsController < ApplicationController
   def not_completed_letters
     if (params[:date1] and not params[:date1].empty?) and (params[:date2] and not params[:date2].empty?)

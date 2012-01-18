@@ -1,3 +1,4 @@
+# encoding: utf-8
 class DepartmentsController < ApplicationController
   def index
     @departments = Department.all
