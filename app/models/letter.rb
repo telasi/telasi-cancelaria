@@ -1,13 +1,13 @@
 # encoding: utf-8
 class Letter < ActiveRecord::Base
   belongs_to :index
-  validate :derive_year
   belongs_to :status
   has_many :letter_departments, :dependent => :destroy
   has_many :letter_employees, :dependent => :destroy
   has_many :departments, :through => :letter_departments
   has_many :employees, :through => :letter_employees
   validates_presence_of :number, :description, :name
+  before_save :derive_year
 
   def self.years
     years = []
@@ -32,6 +32,13 @@ class Letter < ActiveRecord::Base
   def sent2=(dt)
     self.sent = dt
   end
+
+  def review_assignments!
+    self.is_empl_assigned = ! self.employees.empty?
+    self.is_dept_assigned = ! self.departments.empty?
+  end
+
+  private
 
   def derive_year
     self.year = self.received.year

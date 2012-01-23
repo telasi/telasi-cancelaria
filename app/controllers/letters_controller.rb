@@ -105,6 +105,7 @@ class LettersController < ApplicationController
         @letter_department.department = dep
         @letter_department.letter = @letter
         @letter_department.save
+        @letter.review_assignments!
       end
       redirect_to @letter
     end
@@ -116,6 +117,7 @@ class LettersController < ApplicationController
     d = Department.find(params[:department_id])
     ld = LetterDepartment.where(:department_id => d.id, :letter_id => l.id).first
     ld.destroy
+    l.review_assignments!
     redirect_to l
   end
 
@@ -129,6 +131,7 @@ class LettersController < ApplicationController
         @letter_employee.employee = emp
         @letter_employee.letter = @letter
         @letter_employee.save
+        @letter.review_assignments!
       end
       redirect_to @letter
     end
@@ -139,6 +142,7 @@ class LettersController < ApplicationController
     e = Employee.find(params[:employee_id])
     le = LetterEmployee.where(:letter_id => l.id, :employee_id => e.id).first
     le.destroy
+    l.review_assignments!
     redirect_to l
   end
 
