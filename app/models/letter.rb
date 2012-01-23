@@ -36,6 +36,7 @@ class Letter < ActiveRecord::Base
   def review_assignments!
     self.is_empl_assigned = ! self.employees.empty?
     self.is_dept_assigned = ! self.departments.empty?
+    self.save!
   end
 
   private
