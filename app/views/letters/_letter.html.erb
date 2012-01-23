@@ -12,10 +12,10 @@
 </tr>
 <% @letters.each do |l| -%>
 <tr>
-<td class="shade"><%= image_tag(l.status.image_path) %></td>
+<td class="shade"><%= image_tag(l.status.image_path, :title => l.status.name) %></td>
 <td class="shade">
-<% if l.is_empl_assigned %><%= image_tag '/images/16x16/user.png', :title => 'თანამშრომელი მიკუთვნებულია' %><br/><% end %>
-<% if l.is_dept_assigned %><%= image_tag '/images/16x16/group.png', :title => 'განყოფილება მიკუთვნებულია' %><% end %>
+<% if l.is_dept_assigned %><%= image_tag '/images/16x16/group.png', :title => 'განყოფილება მიკუთვნებულია' %><br/><% end %>
+<% if l.is_empl_assigned %><%= image_tag '/images/16x16/user.png', :title => 'თანამშრომელი მიკუთვნებულია' %><% end %>
 </td>
 <td><b><%= link_to l.number, l %></b>
 <% if l.own_number -%><br/><span class="secondary_text"><%= l.own_number %></span><% end -%>
