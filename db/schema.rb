@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123053912) do
+ActiveRecord::Schema.define(:version => 20120402111320) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20120123053912) do
     t.integer  "order_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "department_ka"
+    t.string   "department_ru"
   end
 
   add_index "employees", ["order_by"], :name => "index_employees_on_order_by"
