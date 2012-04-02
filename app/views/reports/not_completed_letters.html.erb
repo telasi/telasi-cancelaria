@@ -17,13 +17,16 @@
 </div>
 <table>
 <tr>
-<th width="100">დეპარტამენტი<br/>Департамент</th>
+<th width="300">დეპარტამენტი<br/>Департамент</th>
 <th width="400">რეგისტრაციის ნომერი<br/>Регистрационный номер</th>
 <th width="100">რაოდენობა<br/>Количество</th>
 </tr>
 <% @letters.keys.each do |e| -%>
 <tr>
-<td><%= link_to e.name, e %></td>
+<td>
+  <% if e.department_ka and not e.department_ka.strip.empty? %><%= e.department_ka %>,<% end -%>
+  <%= link_to e.name, e %>
+</td>
 <td>
 <% @letters[e].each do |l| -%>
 <%= l.received.strftime('%d.%m.%Y') %> №<%= link_to l.number, l %>;
@@ -85,7 +88,12 @@ end
 <% @letters.keys.each do |e| -%>
 <tr>
 <td style="vertical-align: top;">
-<%= e.name %><br/><%= e.name_ru %>
+  <% if e.department_ka and not e.department_ka.strip.empty? %>
+    <%= e.department_ka %><br/>
+    <%= e.department_ru %><br/>
+    <br/>
+  <% end -%>
+  <%= e.name %><br/><%= e.name_ru %>
 </td>
 <td style="vertical-align: top;">
 <% @letters[e].each do |l| -%>
