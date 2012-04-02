@@ -5,7 +5,7 @@
   	<th>&nbsp;</th>
     <th>დირექცია</th>
     <th>სახელი, გვარი</th>
-    <th>სახელი, გვარი (რუსულად)</th>
+    <th>დეპარტამენტი</th>
     <th>&nbsp;</th>
     <th></th>
   </tr>
@@ -14,8 +14,14 @@
   <tr>
 	<td class="shade"><%= employee.order_by %></td>
     <td><%= employee.department.name %></td>
-    <td><%= link_to employee.name, employee %></td>
-    <td><%= employee.name_ru %></td>
+    <td>
+      <%= link_to employee.name, employee %>
+      <span class="muted"><%= employee.name_ru %></span>
+    </td>
+    <td>
+      <%= employee.department_ka %>
+      <span class="muted"><%= employee.department_ru %></span>
+    </td>
     <td><% if employee.print %><%= image_tag '16x16/printer.png' %><% end %></td>
     <td width="200" align="center">
     	<%= link_to 'შეცვლა', edit_employee_path(employee) %> |

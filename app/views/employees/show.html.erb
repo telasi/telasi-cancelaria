@@ -12,15 +12,15 @@
 </tr>
 <tr>
 <td class="shade">სახელი, გვარი</td>
-<td><%= @employee.name %></td>
+<td><%= @employee.name %> <span class="muted"><%= @employee.name_ru %></span></td>
 </tr>
 <tr>
-<td class="shade">სახელი, გვარი (რუსული)</td>
-<td><%= @employee.name_ru %></td>
+  <td class="shade">დეპარტამენტი</td>
+  <td><%= @employee.department_ka %> <span class="muted"><%= @employee.department_ru %></span></td>
 </tr>
 <tr>
-<td class="shade">რიგითი ნომერი</td>
-<td><%= @employee.order_by %></td>
+  <td class="shade">რიგითი ნომერი</td>
+  <td><%= @employee.order_by %></td>
 </tr>
 <tr>
 <td class="shade">დაიბჭდოს სამსახ. წერილში</td>

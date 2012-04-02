@@ -28,6 +28,14 @@
     <%= f.text_field :order_by %>
   </div>
   <div class="field">
+    <%= f.label :department_ka, 'დეპარტამენტის დასახელება' %><br />
+    <%= f.text_field :department_ka, :style => 'width: 400px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :department_ru, 'დეპარტამენტის დასახელება (რუსულად)' %><br />
+    <%= f.text_field :department_ru, :style => 'width: 400px;' %>
+  </div>
+  <div class="field">
     <%= f.label :print, 'დაიბეჭდოს სამსახურეობრივ წერილში?' %>
     <%= f.check_box :print %>
   </div>
