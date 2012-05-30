@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402111320) do
+ActiveRecord::Schema.define(:version => 20120530101147) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -104,6 +104,16 @@ ActiveRecord::Schema.define(:version => 20120402111320) do
   end
 
   add_index "statuses", ["order_by"], :name => "index_statuses_on_order_by"
+
+  create_table "user_indices", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "index_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_indices", ["index_id"], :name => "index_user_indices_on_index_id"
+  add_index "user_indices", ["user_id"], :name => "index_user_indices_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

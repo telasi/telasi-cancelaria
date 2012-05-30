@@ -1,6 +1,8 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
   belongs_to :department
+  has_many :user_indices
+  has_many :indices, through: :user_indices
 
   attr_accessor :password_confirmation
   validates_confirmation_of :password
