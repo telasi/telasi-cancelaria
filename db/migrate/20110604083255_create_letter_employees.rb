@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateLetterEmployees < ActiveRecord::Migration
   def self.up
     create_table :letter_employees do |t|

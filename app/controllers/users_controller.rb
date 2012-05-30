@@ -1,32 +1,17 @@
-# encoding: utf-8
+# -*- encoding : utf-8 -*-
 class UsersController < ApplicationController
 
   def index
     @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
-    end
   end
 
   def show
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
-    end
   end
 
   def new
     redirect_to(users_url, :notice => 'არ გაქვთ ახალი მომხმარებლის დამატების უფლება!') and return if !get_current_user.can_edit_users
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
   end
 
   def edit
@@ -36,41 +21,19 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to(@user, :notice => 'მომხმარებელი შექმნილია.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    redirect_to(@user, :notice => 'მომხმარებელი შექმნილია.') if @user.save
   end
 
   def update
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'მომხმარებელი განახლებულია.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    redirect_to(@user, :notice => 'მომხმარებელი განახლებულია.') if @user.update_attributes(params[:user])
   end
 
   def destroy
     redirect_to(users_url, :notice => 'არ გაქვთ მომხმარებლის წაშლის უფლება!') and return if !get_current_user.can_edit_users
     @user = User.find(params[:id])
     @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(users_url)
   end
 
 end

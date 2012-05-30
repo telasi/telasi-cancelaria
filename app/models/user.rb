@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
   belongs_to :department
   has_many :user_indices

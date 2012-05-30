@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateUserIndices < ActiveRecord::Migration
   def change
     create_table :user_indices do |t|

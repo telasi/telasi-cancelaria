@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- encoding : utf-8 -*-
 class LettersController < ApplicationController
   @@letter_per_page = 25
 

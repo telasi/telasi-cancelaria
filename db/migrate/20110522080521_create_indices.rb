@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateIndices < ActiveRecord::Migration
   def self.up
     create_table :indices do |t|

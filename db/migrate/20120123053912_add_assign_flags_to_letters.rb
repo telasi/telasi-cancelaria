@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddAssignFlagsToLetters < ActiveRecord::Migration
   def change
     add_column :letters, :is_empl_assigned, :boolean
