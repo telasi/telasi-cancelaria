@@ -236,7 +236,7 @@ class LettersController < ApplicationController
     from = []
     from.push(:letter_departments) if filter_deps
     from.push(:letter_employees)  if filter_empls
-    
+
     @letters = Letter.joins(from).paginate(
       :page => conditions[:page],
       :per_page => @@letter_per_page,
