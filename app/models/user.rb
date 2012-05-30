@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password_confirmation
   validates_confirmation_of :password
+  validates_presence_of :name, :first_name, :last_name, :phone
 
   validate :password_non_blank
 

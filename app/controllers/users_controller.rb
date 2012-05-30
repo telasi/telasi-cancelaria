@@ -21,12 +21,20 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    redirect_to(@user, :notice => 'მომხმარებელი შექმნილია.') if @user.save
+    if @user.save
+      redirect_to(@user, :notice => 'მომხმარებელი შექმნილია.')
+    else
+      render :new
+    end
   end
 
   def update
     @user = User.find(params[:id])
-    redirect_to(@user, :notice => 'მომხმარებელი განახლებულია.') if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user])
+      redirect_to(@user, :notice => 'მომხმარებელი განახლებულია.')
+    else
+      render :edit
+    end
   end
 
   def destroy
