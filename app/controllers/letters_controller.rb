@@ -7,11 +7,8 @@ class LettersController < ApplicationController
     @selected_year = params[:year] ? params[:year].to_i : Letter.years.last
     params[:year] = @selected_year.to_s
     @letters = search_support(params)
-    @indecies = Index.all(:order => 'prefix')
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @letters }
-    end
+    @indecies = get_current_user.indices
+    @indecies = Index.all(:order => 'prefix') unless @indecies.any?
   end
 
   def show
@@ -156,6 +153,11 @@ class LettersController < ApplicationController
     if conditions[:index_id] and not conditions[:index_id].empty? and not conditions[:index_id] == '0'
       where.push('letters.index_id=?')
       where_params.push(conditions[:index_id])
+    else
+      indecies = get_current_user.indices
+      indecies = Index.all unless indecies.any?
+      where.push('letters.index_id  IN (?)')
+      where_params.push(indecies.map{|i| i.id})
     end
     if conditions[:status_id] and not conditions[:status_id].empty?
       where.push('letters.status_id=?')
