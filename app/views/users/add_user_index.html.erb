@@ -1,0 +1,14 @@
+<h1><%= @user.full_name %>: ინდექსის დამატება</h1>
+<div class="actions">
+  <%= link_to 'უკან', user_path(@user) %>
+</div>
+
+<%= form_for @user_index, url: request.url do |f| %>
+  <div class="field">
+    <%= f.label :index, 'ინდექსი' %><br>
+    <%= f.collection_select(:index_id, Index.all(:order => 'prefix').map(), :id, :to_s, :include_blank => false) %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'შენახვა' %>
+  </div>
+<% end %>

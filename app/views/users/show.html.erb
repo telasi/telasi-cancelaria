@@ -35,3 +35,19 @@
 <td><%= @user.canc_empl ? 'კი' : 'არა' %></td>
 </tr>
 </table>
+
+<h2 class="common">ინდექსები</h2>
+<p>განსაზღვრეთ, თუ რომელ ნომენკლატურას დაინახავს ეს თანამშრომელი.</p>
+<div class="actions">
+  <%= link_to 'ინდექსის დამატება', add_user_index_url(user_id: @user.id) %>
+</div>
+<% if @user.indices.any? %>
+  <% @user.user_indices.each do |ui| %>
+    <div class="list">
+      <%= ui.index.prefix %>
+      <%= link_to 'წაშლა', delete_user_index_url(id: ui), class: 'delete', method: 'delete', confirm: 'ნამდვილად?' %>
+    </div>
+  <% end %>
+<% else %>
+  <div style="padding: 10px; color: #aaa;"><em>ეს თანამშრომელი ხედავს ყველა ინდექსს.</em></div>
+<% end %>
