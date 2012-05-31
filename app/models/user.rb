@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   def can_edit_letter_employee(l)
     return true if self.admin or self.canc_empl
     l.departments.each do |d|
-      return true if self.departmet == d
+      return true if self.department == d
     end
     false
   end
