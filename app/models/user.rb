@@ -64,7 +64,15 @@ class User < ActiveRecord::Base
   def can_edit_users
     self.admin
   end
-  
+
+  def can_edit_letter_employee(l)
+    return true if self.admin or self.canc_empl
+    l.departments.each do |d|
+      return true if self.departmet == d
+    end
+    false
+  end
+
   private
 
   # პაროლის შემოწმება

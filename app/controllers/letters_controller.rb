@@ -120,6 +120,7 @@ class LettersController < ApplicationController
 
   def add_employee
     @letter = Letter.find(params[:letter_id])
+    redirect_to(@letter, notice: 'არ გაქვთ თანამშრომლის დამატების უფლება!') and return if !get_current_user.can_edit_letter_employee(@letter)
     @letter_employee = LetterEmployee.new
     if request.post?
       emp = Employee.find(params[:letter_employee][:employee_id])
@@ -136,6 +137,7 @@ class LettersController < ApplicationController
 
   def remove_employee
     l = Letter.find(params[:letter_id])
+    redirect_to(l, notice: 'არ გაქვთ თანამშრომლი წაშლის უფლება!') and return if !get_current_user.can_edit_letter_employee(l)
     e = Employee.find(params[:employee_id])
     le = LetterEmployee.where(:letter_id => l.id, :employee_id => e.id).first
     le.destroy
