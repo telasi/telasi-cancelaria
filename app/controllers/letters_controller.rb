@@ -213,7 +213,7 @@ class LettersController < ApplicationController
     end
 
     user = get_current_user
-    filter_deps = !user.canc_empl and get_current_user.indices.empty?
+    filter_deps = !(user.canc_empl or !get_current_user.indices.empty?)
     if filter_deps
       where.push('letter_departments.department_id=?')
       where_params.push(user.department_id)
