@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def get_current_user
-    User.find(session[:user_id]) if session[:user_id]
+    unless @__user_initialized
+      @__user = User.find(session[:user_id]) if session[:user_id] rescue nil
+      @__user_initialized = true
+    end
+    @__user
   end
 
   def check_user
