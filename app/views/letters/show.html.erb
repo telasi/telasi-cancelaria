@@ -2,7 +2,8 @@
 <div class="actions">
 <%= link_to 'სიაში დაბრუნება', letters_path(:index_id => @letter.index.id), :class => 'back' %> |
 <%= link_to 'შეცვლა', edit_letter_path(@letter), :class => 'edit' %> |
-<%= link_to 'ახალი განცხადება', new_letter_path(:index_id => @selected_index), :class => 'create' %>
+<%= link_to 'ახალი განცხადება', new_letter_path(:index_id => @selected_index), :class => 'create' %> |
+<%= link_to 'რეზოლუციის დადება', nil, class: 'exclaim' %>
 </div>
 <%= render :partial => 'letters/head' %>
 

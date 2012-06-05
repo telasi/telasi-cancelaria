@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120530101147) do
+ActiveRecord::Schema.define(:version => 20120605113030) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
     t.integer  "year"
     t.boolean  "is_empl_assigned"
     t.boolean  "is_dept_assigned"
+    t.text     "resolution"
   end
 
   add_index "letters", ["index_id"], :name => "index_letters_on_index_id"
