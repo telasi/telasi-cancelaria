@@ -91,6 +91,14 @@ class LettersController < ApplicationController
     end
   end
 
+  def resolution
+    @letter = Letter.find(params[:letter_id])
+    redirect_to(@letter, notice: 'არ გაქვთ თანამშრომლის დამატების უფლება!') and return if !get_current_user.can_edit_letter_employee(@letter)
+    if request.put?
+      redirect_to @letter, notice: 'რეზოლუცია დადებულია' if @letter.update_attributes(params[:letter])
+    end
+  end
+
   def add_department
     @letter = Letter.find(params[:letter_id])
     redirect_to(@letter, :notice => 'არ გაქვთ დირექციის დამატების უფლება!') and return if !get_current_user.can_edit_letters

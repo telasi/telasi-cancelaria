@@ -18,6 +18,7 @@ Canc::Application.routes.draw do
   match '/add_employee', :controller => :letters, :action => :add_employee
   match '/remove_employee', :controller => :letters, :action => :remove_employee
   match '/search', :controller => :letters, :action => :search
+  match '/resolution', controller: :letters, action: :resolution
 
   match '/add_user_index/:user_id', controller: :users, action: :add_user_index, as: :add_user_index
   delete '/delete_user_index/:id', controller: :users, action: :delete_user_index, as: :delete_user_index

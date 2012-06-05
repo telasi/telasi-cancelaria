@@ -1,0 +1,10 @@
+<h1>წერილზე რეზოლუციის დადება</h1>
+<%= render partial: 'head' %>
+<h2 class="common">ჩაწერეთ რეზოლუცია:</h2>
+<%= form_for @letter, url: request.url do |f| %>
+  <%= f.text_area :resolution, cols: 80, rows: 8, autofocus: true %>
+  <div class="actions">
+    <%= f.submit 'შენახვა' %> ან
+    <%= link_to 'გაუქმება', @letter %>
+  </div>
+<% end %>
