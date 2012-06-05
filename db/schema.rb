@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
     t.string   "salutation_ru"
     t.integer  "order_by"
     t.boolean  "print"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "departments", ["order_by"], :name => "index_departments_on_order_by"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
     t.string   "name_ru"
     t.boolean  "print"
     t.integer  "order_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "department_ka"
     t.string   "department_ru"
   end
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
     t.string   "description"
     t.integer  "last_number"
     t.integer  "relation_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "indices", ["prefix"], :name => "index_indices_on_prefix"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
   create_table "letter_departments", :force => true do |t|
     t.integer  "letter_id"
     t.integer  "department_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "letter_departments", ["letter_id", "department_id"], :name => "index_letter_departments_on_letter_id_and_department_id"
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
   create_table "letter_employees", :force => true do |t|
     t.integer  "letter_id"
     t.integer  "employee_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "letter_employees", ["letter_id", "employee_id"], :name => "index_letter_employees_on_letter_id_and_employee_id"
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
     t.string   "phone"
     t.string   "address"
     t.string   "custnumb"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "year"
     t.boolean  "is_empl_assigned"
     t.boolean  "is_dept_assigned"
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
     t.string   "image"
     t.integer  "order_by"
     t.boolean  "update_sent_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "statuses", ["order_by"], :name => "index_statuses_on_order_by"
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
   create_table "user_indices", :force => true do |t|
     t.integer  "user_id"
     t.integer  "index_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "user_indices", ["index_id"], :name => "index_user_indices_on_index_id"
@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(:version => 20120530101147) do
     t.boolean  "admin"
     t.boolean  "canc_empl"
     t.integer  "department_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   add_index "users", ["department_id"], :name => "index_users_on_department_id"
