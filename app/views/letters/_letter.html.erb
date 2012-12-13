@@ -25,7 +25,7 @@
           <%= l.received.strftime("%d-%b-%Y") %>
           <% if l.sent -%><br/><span class="secondary_text"><%= l.sent.strftime("%d-%b-%Y") %></span><% end -%>
         </td>
-        <td><%= l.description %></td>
+        <td><%= decorate_description(l.description) %></td>
         <td>
           <%= l.name %> <% if l.custnumb and not l.custnumb.empty? %>(<%= l.custnumb %>)<% end %>
           <br/>
